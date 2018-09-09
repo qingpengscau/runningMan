@@ -1,9 +1,10 @@
 package scau.zxck.entity.market;
 
+import org.springframework.context.annotation.Bean;
+import scau.zxck.base.dao.annotation.Table;
 import scau.zxck.base.dao.entity.Unique;
-
+@Table(name = "user_info")
 public class User extends Unique {
-    private String id;
     private String user_name;
     private String user_password;
     private int user_sex;
@@ -12,14 +13,6 @@ public class User extends Unique {
     private String user_cell;
     private String user_regtime;
     private int user_mark;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getUser_name() {
         return user_name;

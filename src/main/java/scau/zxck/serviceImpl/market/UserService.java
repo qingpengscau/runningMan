@@ -1,19 +1,16 @@
-package scau.zxck.serviceImpl.sys;
+package scau.zxck.serviceImpl.market;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import scau.zxck.base.dao.mybatis.Conditions;
-import scau.zxck.base.dao.utils.Page;
 import scau.zxck.base.exception.BaseException;
-import scau.zxck.dao.sys.UserDao;
-import scau.zxck.service.sys.IUserService;
+import scau.zxck.dao.market.UserDao;
+import scau.zxck.entity.market.User;
+import scau.zxck.service.market.IUserService;
 
 import java.util.List;
 
 
-/**
- * Created by suruijia on 2016/1/29.
- */
 @Service
 public class UserService implements IUserService {
     @Autowired
@@ -49,8 +46,8 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public List<User> listUser() throws BaseException {
-        return userDao.list(null);
+    public List<User> listUser(Conditions conditions) throws BaseException {
+        return userDao.list(conditions);
     }
 
 }

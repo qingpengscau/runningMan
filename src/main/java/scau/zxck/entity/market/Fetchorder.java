@@ -3,7 +3,6 @@ package scau.zxck.entity.market;
 import scau.zxck.base.dao.entity.Unique;
 
 public class Fetchorder extends Unique {
-    private String id;
     private String release_man_id;
     private String execute_man_id;
     private String receive_man_id;
@@ -22,13 +21,6 @@ public class Fetchorder extends Unique {
     private String comment;
     private int remark;
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getRelease_man_id() {
         return release_man_id;
