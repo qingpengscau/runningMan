@@ -6,13 +6,12 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>豐隆312312</title>
+    <title>豐隆</title>
     <link rel="stylesheet" type="text/css" href="${cssPath}/bootstrap.min.css">
 </head>
-sdzdczczdz
+
 <body>
 
-	
 <script src="${jsPath}/lib/jquery.min.js"></script>
 <script src="${jsPath}/lib/bootstrap.min.js"></script>
 </body>

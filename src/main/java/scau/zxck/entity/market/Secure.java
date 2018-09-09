@@ -1,6 +1,8 @@
 package scau.zxck.entity.market;
 
-public class Secure {
+import scau.zxck.base.dao.entity.Unique;
+
+public class Secure extends Unique {
     private String id;
     private String student_id;
     private String secure_question;

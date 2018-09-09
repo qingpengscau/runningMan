@@ -1,6 +1,8 @@
 package scau.zxck.entity.market;
 
-public class User {
+import scau.zxck.base.dao.entity.Unique;
+
+public class User extends Unique {
     private String id;
     private String user_name;
     private String user_password;

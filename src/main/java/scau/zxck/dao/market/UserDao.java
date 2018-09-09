@@ -5,11 +5,12 @@ import scau.zxck.base.constants.ErrorCode;
 import scau.zxck.base.dao.BaseDao;
 import scau.zxck.base.exception.BaseException;
 import scau.zxck.entity.market.Link;
+import scau.zxck.entity.market.User;
 
 /**
  * Created by suruijia on 2016/1/29.
  */
 @Repository
-public class UserDao extends BaseDao<Link> {
+public class UserDao extends BaseDao<User> {
 
 }

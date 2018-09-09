@@ -1,6 +1,8 @@
 package scau.zxck.entity.market;
 
-public class Receiver {
+import scau.zxck.base.dao.entity.Unique;
+
+public class Receiver extends Unique {
     private String id;
     private String receiver_name;
     private String deliver_address;
