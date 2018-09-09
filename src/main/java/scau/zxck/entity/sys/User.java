@@ -1,69 +1,85 @@
 package scau.zxck.entity.sys;
 
+public class User {
+    private String id;
+    private String user_name;
+    private String user_password;
+    private int user_sex;
+    private String location;
+    private int gold;
+    private String user_cell;
+    private String user_regtime;
+    private int user_mark;
 
-import scau.zxck.base.dao.annotation.Column;
-import scau.zxck.base.dao.annotation.Table;
-import scau.zxck.base.dao.entity.Unique;
-
-/**
- * 用户表
- * Created by suruijia on 2016/1/29.
- */
-@Table(name = "lab_user")
-public class User extends Unique {
-    /**
-     * 用户名
-     **/
-    @Column(name = "name")
-    private String name;
-
-    /**
-     * 用户密码
-     **/
-    @Column(name = "password")
-    private String password;
-
-    /**
-     * 盐
-     */
-    @Column(name = "salt")
-    private String salt;
-
-    /**
-     * 账户是否可用的标志
-     */
-    @Column(name = "flag")
-    private Integer flag;
-
-    public String getSalt() {
-        return salt;
+    public String getId() {
+        return id;
     }
 
-    public void setSalt(String salt) {
-        this.salt = salt;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public Integer getFlag() {
-        return flag;
+    public String getUser_name() {
+        return user_name;
     }
 
-    public void setFlag(Integer flag) {
-        this.flag = flag;
+    public void setUser_name(String user_name) {
+        this.user_name = user_name;
     }
 
-    public String getName() {
-        return name;
+    public String getUser_password() {
+        return user_password;
     }
 
-    public String getPassword() {
-        return password;
+    public void setUser_password(String user_password) {
+        this.user_password = user_password;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public int getUser_sex() {
+        return user_sex;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setUser_sex(int user_sex) {
+        this.user_sex = user_sex;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public int getGold() {
+        return gold;
+    }
+
+    public void setGold(int gold) {
+        this.gold = gold;
+    }
+
+    public String getUser_cell() {
+        return user_cell;
+    }
+
+    public void setUser_cell(String user_cell) {
+        this.user_cell = user_cell;
+    }
+
+    public String getUser_regtime() {
+        return user_regtime;
+    }
+
+    public void setUser_regtime(String user_regtime) {
+        this.user_regtime = user_regtime;
+    }
+
+    public int getUser_mark() {
+        return user_mark;
+    }
+
+    public void setUser_mark(int user_mark) {
+        this.user_mark = user_mark;
     }
 }

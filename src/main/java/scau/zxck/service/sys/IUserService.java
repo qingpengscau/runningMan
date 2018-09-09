@@ -2,10 +2,8 @@ package scau.zxck.service.sys;
 
 import scau.zxck.base.dao.utils.Page;
 import scau.zxck.base.exception.BaseException;
-import scau.zxck.entity.sys.User;
 
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by suruijia on 2016/1/29.

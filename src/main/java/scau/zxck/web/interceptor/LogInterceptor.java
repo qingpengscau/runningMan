@@ -2,18 +2,14 @@ package scau.zxck.web.interceptor;
 
 import com.alibaba.fastjson.JSON;
 import org.apache.log4j.Logger;
-import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
-import scau.zxck.base.dao.mybatis.Conditions;
-import scau.zxck.entity.sys.User;
 import scau.zxck.service.sys.IUserService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.List;
 
 /**
  * Created by leeshunpeng on 2015/6/17.
