@@ -61,6 +61,7 @@
     <init-param><!-- 指定 Spring MVC 的配置文件 默认为WEB-INF目录下，名称为[<servlet-name>]-servlet.xml，如spring-servlet.xml -->
       <param-name>contextConfigLocation</param-name>
       <param-value>classpath:/config/spring/web/spring-mvc.xml</param-value>
+      <!-- classpath 指定到resources-->
     </init-param>
     <load-on-startup>1</load-on-startup><!-- 指定加载顺序 -->
     <async-supported>true</async-supported><!-- 支持异步请求 -->

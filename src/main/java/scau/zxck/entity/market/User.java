@@ -2,16 +2,28 @@ package scau.zxck.entity.market;
 
 import org.springframework.context.annotation.Bean;
 import scau.zxck.base.dao.annotation.Table;
+import scau.zxck.base.dao.annotation.Column;
 import scau.zxck.base.dao.entity.Unique;
+
+import java.sql.Date;
+
 @Table(name = "user_info")
 public class User extends Unique {
+    @Column(name="user_name")
     private String user_name;
+    @Column(name="user_password")
     private String user_password;
+    @Column(name="user_sex")
     private int user_sex;
+    @Column(name="location")
     private String location;
+    @Column(name="gold")
     private int gold;
+    @Column(name="user_cell")
     private String user_cell;
+    @Column(name="user_regtime")
     private String user_regtime;
+    @Column(name="user_mark")
     private int user_mark;
 
     public String getUser_name() {
@@ -62,7 +74,7 @@ public class User extends Unique {
         this.user_cell = user_cell;
     }
 
-    public String getUser_regtime() {
+    public String  getUser_regtime() {
         return user_regtime;
     }
 

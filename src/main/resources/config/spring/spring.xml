@@ -27,7 +27,7 @@
 
     <!-- 扫描的包路径 -->
 	<!-- 如果配置成分层扫描 需要分别在spring.xml spring-mvc.xml spring-mybatis.xml 中打开扫描各自的包 -->
-    <context:component-scan base-package="scau.zxck.serviceImpl" />
+    <context:component-scan base-package="scau.zxck.serviceImpl.market" />
 
 	<!-- 加载DB层配置文件 -->
 	<import resource="classpath:config/spring/db/spring-db.xml"/>

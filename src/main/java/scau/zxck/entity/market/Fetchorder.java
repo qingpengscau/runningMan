@@ -1,24 +1,48 @@
 package scau.zxck.entity.market;
 
 import scau.zxck.base.dao.entity.Unique;
+import scau.zxck.base.dao.annotation.Column;
+import scau.zxck.base.dao.annotation.Table;
 
+/**
+ * 友情链接表
+ * Created by suruijia on 2016/1/29.
+ */
+@Table(name = "fetch_order_info")
 public class Fetchorder extends Unique {
+    @Column(name="release_man_id")
     private String release_man_id;
+    @Column(name="execute_man_id")
     private String execute_man_id;
+    @Column(name="receive_man_id")
     private String receive_man_id;
+    @Column(name="release_time")
     private String release_time;
+    @Column(name="departure")
     private String departure;
+    @Column(name="destination")
     private String destination;
+    @Column(name="weight")
     private String weight;
+    @Column(name="type")
     private int type;
+    @Column(name="prewait_time")
     private int prewait_time;
+    @Column(name="express_company")
     private String express_company;
+    @Column(name="order_start_time")
     private String order_start_time;
+    @Column(name="order_finish_time")
     private String order_finish_time;
+    @Column(name="fee")
     private double fee;
+    @Column(name="issue_descri")
     private String issue_descri;
+    @Column(name="status")
     private int status;
+    @Column(name="comment")
     private String comment;
+    @Column(name="remark")
     private int remark;
 
 
