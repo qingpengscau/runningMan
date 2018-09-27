@@ -1,11 +1,15 @@
 package scau.zxck.entity.market;
 
 import scau.zxck.base.dao.entity.Unique;
-
+import scau.zxck.base.dao.annotation.Column;
+import scau.zxck.base.dao.annotation.Table;
+@Table(name = "secure_info")
 public class Secure extends Unique {
-    private String id;
+    @Column(name="student_id")
     private String student_id;
+    @Column(name="secure_question")
     private String secure_question;
+    @Column(name="secure_answer")
     private String secure_answer;
 
     public String getStudent_id() {
@@ -14,14 +18,6 @@ public class Secure extends Unique {
 
     public void setStudent_id(String student_id) {
         this.student_id = student_id;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getSecure_question() {

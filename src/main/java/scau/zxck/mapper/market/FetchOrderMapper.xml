@@ -19,12 +19,12 @@
     </delete>
 
     <!--这里的resultType需要修改为实际的entity-->
-    <select id="find" parameterType="SQLAdapter" resultType="Fetch_order" >
+    <select id="find" parameterType="SQLAdapter" resultType="Fetchorder" >
         ${sql}
     </select>
 
     <!--这里的resultType需要修改为实际的entity-->
-    <select id="list" parameterType="SQLAdapter" resultType="Fetch_order" >
+    <select id="list" parameterType="SQLAdapter" resultType="Fetchorder" >
         ${sql}
     </select>
 

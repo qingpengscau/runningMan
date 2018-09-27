@@ -22,7 +22,7 @@
 		http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
 	<!-- 自动扫描指定目录 在spring.xml中已经配置了扫描所有包，这里就不需要再配置-->
-	<context:component-scan base-package="scau.zxck.dao"/>
+	<context:component-scan base-package="scau.zxck.dao.market"/>
 
 	<!-- 数据源 -->
 	<import resource="classpath:config/spring/db/spring-db-datasource.xml"/>
