@@ -1,51 +1,87 @@
 package scau.zxck.entity.market;
 
-import scau.zxck.base.dao.entity.Unique;
 import scau.zxck.base.dao.annotation.Column;
 import scau.zxck.base.dao.annotation.Table;
-
-/**
- * 友情链接表
- * Created by suruijia on 2016/1/29.
- */
+import scau.zxck.base.dao.entity.Unique;
 @Table(name = "fetch_order_info")
 public class Fetchorder extends Unique {
-    @Column(name="release_man_id")
+    /*
+    *  `id` varchar(255) NOT NULL,
+  `release_man_id` varchar(50) NOT NULL,
+  `execute_man_id` varchar(50) DEFAULT NULL,
+  `receive_man_id` varchar(50) NOT NULL,
+  `release_time` varchar(20) NOT NULL,
+  `departure` varchar(50) NOT NULL,
+  `destination` varchar(50) NOT NULL,
+  `weight` double(5,0) DEFAULT NULL,
+  `type` int(1) NOT NULL,
+  `prewait_time` int(5) DEFAULT NULL,
+  `express_company` varchar(20) DEFAULT NULL,
+  `order_start_time` varchar(20) DEFAULT NULL,
+  `order_finish_time` varchar(20) DEFAULT NULL,
+  `fee` double(10,0) NOT NULL,
+  `issue_descri` varchar(255) NOT NULL,
+  `status` int(1) NOT NULL,
+  `comment` varchar(50) DEFAULT NULL,
+  `remark` int(1) NOT NULL,*/
+    @Column(name = "release_man_id")
     private String release_man_id;
-    @Column(name="execute_man_id")
+    @Column(name = "execute_man_id")
     private String execute_man_id;
-    @Column(name="receive_man_id")
+    @Column(name = "receive_man_id")
     private String receive_man_id;
-    @Column(name="release_time")
+    @Column(name = "release_time")
     private String release_time;
-    @Column(name="departure")
+    @Column(name = "departure")
     private String departure;
-    @Column(name="destination")
+
+
+
+    @Column(name = "destination")
     private String destination;
-    @Column(name="weight")
-    private String weight;
-    @Column(name="type")
+    @Column(name = "weight")
+    private double weight;
+    @Column(name = "commondity")
+    private String commondity;
+    @Column(name = "commondity_picture")
+    private String commondity_picture;
+    @Column(name = "type")
     private int type;
-    @Column(name="prewait_time")
+    @Column(name = "prewait_time")
     private int prewait_time;
-    @Column(name="express_company")
+    @Column(name = "express_company")
     private String express_company;
-    @Column(name="order_start_time")
+    @Column(name = "order_start_time")
     private String order_start_time;
-    @Column(name="order_finish_time")
+    @Column(name = "order_finish_time")
     private String order_finish_time;
-    @Column(name="fee")
+    @Column(name = "fee")
     private double fee;
-    @Column(name="issue_descri")
+    @Column(name = "issue_descri")
     private String issue_descri;
-    @Column(name="status")
+    @Column(name = "status")
     private int status;
-    @Column(name="comment")
+    @Column(name = "comment")
     private String comment;
-    @Column(name="remark")
+    @Column(name = "remark")
     private int remark;
 
 
+    public String getCommondity() {
+        return commondity;
+    }
+
+    public void setCommondity(String commondity) {
+        this.commondity = commondity;
+    }
+
+    public String getCommondity_picture() {
+        return commondity_picture;
+    }
+
+    public void setCommondity_picture(String commondity_picture) {
+        this.commondity_picture = commondity_picture;
+    }
     public String getRelease_man_id() {
         return release_man_id;
     }
@@ -94,11 +130,11 @@ public class Fetchorder extends Unique {
         this.destination = destination;
     }
 
-    public String getWeight() {
+    public double getWeight() {
         return weight;
     }
 
-    public void setWeight(String weight) {
+    public void setWeight(double weight) {
         this.weight = weight;
     }
 

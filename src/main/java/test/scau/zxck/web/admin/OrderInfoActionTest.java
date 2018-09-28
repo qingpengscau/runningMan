@@ -79,10 +79,10 @@ public class OrderInfoActionTest {
         String name="{\"status\":\"0\"}";
         String password="guanshui";
         //System.out.println(gson.toJson(name));
-
+        System.out.println(s);
         JsonObject returnData = new JsonParser().parse(name).getAsJsonObject();
 
-      String responseString = mockMvc.perform( post("/getAllOrder").contentType(MediaType.APPLICATION_JSON).content("")).andDo(print())
+      String responseString = mockMvc.perform( post("/addShoppingOrder").contentType(MediaType.APPLICATION_FORM_URLENCODED).param("departure","guanshuai").content(s)).andDo(print())
               .andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
     }
 }

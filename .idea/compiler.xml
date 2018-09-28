@@ -9,8 +9,5 @@
         <module name="fenglong" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="runningman" target="1.8" />
-    </bytecodeTargetLevel>
   </component>
 </project>

@@ -28,14 +28,26 @@ public class FetchOrderService implements IFetchOrderService {
     }
 
     @Override
-    public  <V> List<V> ListAll()  {
-        System.out.println("lllllllllllllllllll");
-        /*try {
-            return fetchOrderDao.listAll();
-        } catch (BaseException e) {
-            System.out.println("llalalal");
-            e.printStackTrace();
-        }*/
-       return  null;
+    public  <v> List<v> listAll() throws BaseException {
+
+           return   fetchOrderDao.listAll();
+
+    }
+
+    @Override
+    public void deleteFetchorder(String id) throws BaseException {
+
+        fetchOrderDao.deleteByIds(id);
+
+    }
+
+    @Override
+    public Fetchorder findByid(String id) throws BaseException {
+        return fetchOrderDao.findById(id);
+    }
+
+    @Override
+    public void updateFetchOrder(Fetchorder fetchorder) throws BaseException {
+        fetchOrderDao.updateById(fetchorder);
     }
 }

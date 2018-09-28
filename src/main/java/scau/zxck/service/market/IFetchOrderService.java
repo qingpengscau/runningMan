@@ -12,5 +12,8 @@ import java.util.List;
  */
 public interface IFetchOrderService {
     String addFetchorder(Fetchorder fetchOrder) throws BaseException;
-    <V> List<V> ListAll() throws BaseException;
+     <v> List<v> listAll() throws BaseException;
+    void deleteFetchorder(String id) throws BaseException;
+    Fetchorder findByid(String id) throws  BaseException;
+    void updateFetchOrder(Fetchorder fetchorder) throws BaseException;
 }
