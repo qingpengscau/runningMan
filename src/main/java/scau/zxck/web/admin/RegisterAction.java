@@ -45,8 +45,12 @@ public class RegisterAction {
         User user=new User();
         user.setUser_cell(cell);
         user.setUser_password(password);
-        SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-        String date=simpleDateFormat.format(new Date(Long.valueOf(data.get("User_Regtime").toString())));
+        user.setGold(0);
+        user.setUser_sex(2);
+        user.setLocation("");
+        user.setUser_name("");
+        SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String date=simpleDateFormat.format(new Date(System.currentTimeMillis()));
         user.setUser_regtime(date);
         String userId=iUserService.addUser(user);
 
@@ -75,7 +79,7 @@ public class RegisterAction {
             WriteJson.writeJson(response,r);
         //return value
     }
-
+    @RequestMapping(value = "valiateAccount",method = RequestMethod.POST)
     public void valiateAccount (HttpServletResponse response)throws IOException,BaseException{
             JSONObject data=ReadJson.readJson(request);
             String cell=data.get("User_Cell").toString();

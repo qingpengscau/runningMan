@@ -72,7 +72,9 @@
 		<mvc:interceptor>
 			<!--<mvc:mapping path="/admin/**"/>-->
 			<mvc:mapping path="/**"/>
-			<!--<mvc:exclude-mapping path="/login"/>-->
+			<mvc:exclude-mapping path="/login"/>
+			<mvc:exclude-mapping path="/getSecureQuestion"/>
+			<mvc:exclude-mapping path="/register"/>
 			<!--  原来：<mvc:mapping path="/admin/**"/>  -->
 			<bean class="scau.zxck.web.interceptor.Tokenterceptor"/>
 		</mvc:interceptor>
