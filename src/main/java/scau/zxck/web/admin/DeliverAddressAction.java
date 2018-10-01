@@ -162,7 +162,7 @@ public class DeliverAddressAction {
         try {
             String id = session.getAttribute("id").toString();
             Conditions conditions = new Conditions();
-            List<Receiver> addresses = receiverService.getAddress(conditions.eq("user_id",id));
+            List<Receiver> addresses = receiverService.listReceiver(conditions.eq("user_id",id));
             JSONArray s=new JSONArray();
             for(Receiver address: addresses){
                 JSONObject tp=new JSONObject();

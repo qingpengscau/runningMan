@@ -5,6 +5,8 @@ import scau.zxck.base.dao.annotation.Column;
 import scau.zxck.base.dao.annotation.Table;
 @Table(name = "secure_info")
 public class Secure extends Unique {
+    @Column(name="user_id")
+    private String user_id;
     @Column(name="student_id")
     private String student_id;
     @Column(name="secure_question")
@@ -34,5 +36,13 @@ public class Secure extends Unique {
 
     public void setSecure_answer(String secure_answer) {
         this.secure_answer = secure_answer;
+    }
+
+    public String getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(String user_id) {
+        this.user_id = user_id;
     }
 }

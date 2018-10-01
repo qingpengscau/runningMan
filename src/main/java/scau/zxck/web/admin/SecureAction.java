@@ -46,7 +46,7 @@ public class SecureAction {
             String r="";
             if(list.get(0)!=null){
                 conditions=new Conditions();
-                List<Secure>list1=iSecureService.listSecure(conditions.eq("id",list.get(0).getId()));
+                List<Secure>list1=iSecureService.listSecure(conditions.eq("user_id",list.get(0).getId()));
 
                 Secure secure0=list1.get(0);
                 Secure secure1=list1.get(1);

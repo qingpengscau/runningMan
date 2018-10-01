@@ -55,7 +55,7 @@ public class RegisterAction {
         String userId=iUserService.addUser(user);
 
         Secure secure=new Secure();
-        secure.setId(userId);
+        secure.setUser_id(userId);
         secure.setSecure_question(data.get("Secure_Question1").toString());
         secure.setSecure_answer(data.get("Secure_Answer1").toString());
 
