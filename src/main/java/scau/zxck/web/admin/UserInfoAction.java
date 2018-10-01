@@ -66,7 +66,7 @@ public class UserInfoAction {
                 temp.put("address",user.getLocation());
                 temp.put("money",user.getGold());
                 temp.put("cell",user.getUser_cell());
-                //image path
+                temp.put("image_path",user.getImage_path());
                 reJson.put("status","1");
                 reJson.put("data",temp);
             }else{
@@ -93,6 +93,7 @@ public class UserInfoAction {
                 user.setGold(Integer.parseInt(data.get("Gold").toString()));
                 user.setLocation(data.get("Location").toString());
                 user.setUser_sex(Integer.parseInt(data.get("User_Sex").toString()));
+                
                 iUserService.updateUser(user);
                 temp.put("data","");
                 temp.put("status","1");

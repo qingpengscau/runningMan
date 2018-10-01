@@ -19,6 +19,8 @@ public class User extends Unique {
     private String location;
     @Column(name="gold")
     private int gold;
+    @Column(name="image_path")
+    private String image_path;
     @Column(name="user_cell")
     private String user_cell;
     @Column(name="user_regtime")
@@ -88,5 +90,13 @@ public class User extends Unique {
 
     public void setUser_mark(int user_mark) {
         this.user_mark = user_mark;
+    }
+
+    public String getImage_path() {
+        return image_path;
+    }
+
+    public void setImage_path(String image_path) {
+        this.image_path = image_path;
     }
 }
