@@ -14,6 +14,26 @@ public class Receiver extends Unique {
     private String receiver_cell;
     @Column(name="receiver_sex")
     private int receiver_sex;
+    @Column(name="receiver_area")
+    private String receiver_area;
+    @Column(name="user_id")
+    private String user_id;
+
+    public String getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(String user_id) {
+        this.user_id = user_id;
+    }
+
+    public String getReceiver_area() {
+        return receiver_area;
+    }
+
+    public void setReceiver_area(String receiver_area) {
+        this.receiver_area = receiver_area;
+    }
 
     public String getReceiver_name() {
         return receiver_name;
