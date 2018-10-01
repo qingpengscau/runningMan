@@ -11,7 +11,7 @@
 </head>
 
 <body>
-<h2>Hello gfhgfdsshgfhfgfhhWorld!</h2>
+fasfasfas
 <script src="${jsPath}/lib/jquery.min.js"></script>
 <script src="${jsPath}/lib/bootstrap.min.js"></script>
 </body>

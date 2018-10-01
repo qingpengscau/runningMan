@@ -34,15 +34,15 @@ public class LoginAction{
     private HttpServletRequest request;
     @Autowired
     private HttpSession session;
-    @RequestMapping(value = "login",method =RequestMethod.POST )
-    public void login(HttpServletResponse response) throws BaseException,IOException {
-      System.out.println(session.getAttribute("Password")+",,,,,,,,,,,,");
-        BufferedReader br=request.getReader();
-        String str,whoStr="";
-        while((str=br.readLine())!=null){
-            whoStr+=str;
-        }
-        JSONObject data=JSON.parseObject(whoStr);
+        @RequestMapping(value = "login",method =RequestMethod.POST )
+        public void login(HttpServletResponse response) throws BaseException,IOException {
+            System.out.println(session.getAttribute("")+",,,,,,,,,,,,");
+            BufferedReader br=request.getReader();
+            String str,whoStr="";
+            while((str=br.readLine())!=null){
+                whoStr+=str;
+            }
+            JSONObject data=JSON.parseObject(whoStr);
         String name=data.get("User_Name").toString();
         String password=data.get("User_Password").toString();
         String cell=data.get("User_Cell").toString();
