@@ -1,12 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2ac5aa9b-3faa-4c34-b4c9-1d60d145e3ff" name="Default" comment="">
+    <list default="true" id="2ac5aa9b-3faa-4c34-b4c9-1d60d145e3ff" name="Default" comment="Merge branch 'qingpeng' of https://github.com/qingpengscau/runningMan&#10;&#10;# Conflicts:&#10;#&#9;.idea/compiler.xml&#10;#&#9;.idea/misc.xml&#10;#&#9;.idea/vcs.xml&#10;#&#9;.idea/workspace.xml&#10;#&#9;out/artifacts/fenglong_war_exploded/META-INF/MANIFEST.MF&#10;#&#9;out/artifacts/fenglong_war_exploded/WEB-INF/classes/config/ds/ds-c3p0.properties&#10;#&#9;out/artifacts/fenglong_war_exploded/WEB-INF/classes/config/ds/ds-druid.properties&#10;#&#9;out/artifacts/fenglong_war_exploded/WEB-INF/classes/config/ds/ds-jdbc.properties&#10;#&#9;out/artifacts/fenglong_war_exploded/WEB-INF/classes/config/log/log4j.properties&#10;#&#9;out/artifacts/fenglong_war_exploded/WEB-INF/classes/config/spring/aop/spring-aop.xml&#10;#&#9;out/artifacts/fenglong_war_exploded/WEB-INF/classes/config/spring/db/spring-db-datasource.xml&#10;#&#9;out/artifacts/fenglong_war_exploded/WEB-INF/classes/config/spring/db/spring-db-mybatis.xml&#10;#&#9;out/artifacts/fenglong_war_exploded/WEB-INF/classes/config/spring/db/spring-db-tx.xml&#10;#&#9;out/artifacts/fenglong_war_exploded/WEB-INF/classes/config/spring/db/spring-db.xml&#10;#&#9;out/artifacts/fenglong_war_exploded/WEB-INF/classes/config/spring/spring.xml&#10;#&#9;out/artifacts/fenglong_war_exploded/WEB-INF/classes/config/spring/web/spring-mvc.xml&#10;#&#9;out/artifacts/fenglong_war_exploded/WEB-INF/classes/scau/zxck/dao/market/UnionStaffDao.class&#10;#&#9;out/artifacts/fenglong_war_exploded/WEB-INF/classes/scau/zxck/entity/market/UnionStaff.class&#10;#&#9;out/artifacts/fenglong_war_exploded/WEB-INF/classes/scau/zxck/mapper/market/UnionStaffMapper.xml&#10;#&#9;out/artifacts/fenglong_war_exploded/WEB-INF/classes/scau/zxck/service/market/IUnionStaffService.class&#10;#&#9;out/artifacts/fenglong_war_exploded/WEB-INF/classes/scau/zxck/serviceImpl/market/UnionStaffService.class&#10;#&#9;out/artifacts/fenglong_war_exploded/WEB-INF/classes/scau/zxck/utils/HtmlRegexpUtil.class&#10;#&#9;out/artifacts/fenglong_war_exploded/WEB-INF/classes/scau/zxck/vo/NavNews.class&#10;#&#9;out/artifacts/fenglong_war_exploded/WEB-INF/classes/scau/zxck/vo/Sequence.class&#10;#&#9;out/artifacts/fenglong_war_exploded/WEB-INF/lib/aopalliance-1.0.jar&#10;#&#9;out/artifacts/fenglong_war_exploded/WEB-INF/lib/aspectjweaver-1.8.5.jar&#10;#&#9;out/artifacts/fenglong_war_exploded/WEB-INF/lib/c3p0-0.9.1.2.jar&#10;#&#9;out/artifacts/fenglong_war_exploded/WEB-INF/lib/commons-beanutils-1.8.3.jar&#10;#&#9;out/artifacts/fenglong_war_exploded/WEB-INF/lib/commons-codec-1.10.jar&#10;#&#9;out/artifacts/fenglong_war_exploded/WEB-INF/lib/commons-dbcp-1.4.jar&#10;#&#9;out/artifacts/fenglong_war_exploded/WEB-INF/lib/commons-fileupload-1.3.1.jar&#10;#&#9;out/artifacts/fenglong_war_exploded/WEB-INF/lib/commons-io-2.4.jar&#10;#&#9;out/artifacts/fenglong_war_exploded/WEB-INF/lib/commons-pool-1.5.4.jar&#10;#&#9;out/artifacts/fenglong_war_exploded/WEB-INF/lib/druid-1.0.13.jar&#10;#&#9;out/artifacts/fenglong_war_exploded/WEB-INF/lib/ehcache-2.10.0.jar&#10;#&#9;out/artifacts/fenglong_war_exploded/WEB-INF/lib/ehcache-core-2.5.0.jar&#10;#&#9;out/artifacts/fenglong_war_exploded/WEB-INF/lib/fastjson-1.2.5.jar&#10;#&#9;out/artifacts/fenglong_war_exploded/WEB-INF/lib/guava-18.0.jar&#10;#&#9;out/artifacts/fenglong_war_exploded/WEB-INF/lib/hamcrest-core-1.3.jar&#10;#&#9;out/artifacts/fenglong_war_exploded/WEB-INF/lib/jackson-annotations-2.5.4.jar&#10;#&#9;out/artifacts/fenglong_war_exploded/WEB-INF/lib/jackson-core-2.5.4.jar&#10;#&#9;out/artifacts/fenglong_war_exploded/WEB-INF/lib/jackson-databind-2.5.4.jar&#10;#&#9;out/artifacts/fenglong_war_exploded/WEB-INF/lib/jcl-over-slf4j-1.7.12.jar&#10;#&#9;out/artifacts/fenglong_war_exploded/WEB-INF/lib/jstl-1.2.jar&#10;#&#9;out/artifacts/fenglong_war_exploded/WEB-INF/lib/junit-4.12.jar&#10;#&#9;out/artifacts/fenglong_war_exploded/WEB-INF/lib/log4j-1.2.17.jar&#10;#&#9;out/artifacts/fenglong_war_exploded/WEB-INF/lib/mybatis-3.2.8.jar&#10;#&#9;out/artifacts/fenglong_war_exploded/WEB-INF/lib/mybatis-spring-1.2.2.jar&#10;#&#9;out/artifacts/fenglong_war_exploded/WEB-INF/lib/mysql-connector-java-5.1.34.jar&#10;#&#9;out/artifacts/fenglong_war_exploded/WEB-INF/lib/quartz-1.6.1.jar&#10;#&#9;out/artifacts/fenglong_war_exploded/WEB-INF/lib/quartz-2.2.1.jar&#10;#&#9;out/artifacts/fenglong_war_exploded/WEB-INF/lib/shiro-core-1.2.4.jar&#10;#&#9;out/artifacts/fenglong_war_exploded/WEB-INF/lib/shiro-ehcache-1.2.4.jar&#10;#&#9;out/artifacts/fenglong_war_exploded/WEB-INF/lib/shiro-quartz-1.2.4.jar&#10;#&#9;out/artifacts/fenglong_war_exploded/WEB-INF/lib/shiro-spring-1.2.4.jar&#10;#&#9;out/artifacts/fenglong_war_exploded/WEB-INF/lib/shiro-web-1.2.4.jar&#10;#&#9;out/artifacts/fenglong_war_exploded/WEB-INF/lib/slf4j-api-1.7.12.jar&#10;#&#9;out/artifacts/fenglong_war_exploded/WEB-INF/lib/slf4j-log4j12-1.7.12.jar&#10;#&#9;out/artifacts/fenglong_war_exploded/WEB-INF/lib/spring-aop-4.1.6.RELEASE.jar&#10;#&#9;out/artifacts/fenglong_war_exploded/WEB-INF/lib/spring-aspects-4.1.6.RELEASE.jar&#10;#&#9;out/artifacts/fenglong_war_exploded/WEB-INF/lib/spring-beans-4.1.6.RELEASE.jar&#10;#&#9;out/artifacts/fenglong_war_exploded/WEB-INF/lib/spring-context-4.1.6.RELEASE.jar&#10;#&#9;out/artifacts/fenglong_war_exploded/WEB-INF/lib/spring-context-support-4.1.6.RELEASE.jar&#10;#&#9;out/artifacts/fenglong_war_exploded/WEB-INF/lib/spring-core-4.1.6.RELEASE.jar&#10;#&#9;out/artifacts/fenglong_war_exploded/WEB-INF/lib/spring-expression-4.1.6.RELEASE.jar&#10;#&#9;out/artifacts/fenglong_war_exploded/WEB-INF/lib/spring-jdbc-4.1.6.RELEASE.jar&#10;#&#9;out/artifacts/fenglong_war_exploded/WEB-INF/lib/spring-orm-4.1.6.RELEASE.jar&#10;#&#9;out/artifacts/fenglong_war_exploded/WEB-INF/lib/spring-oxm-4.1.6.RELEASE.jar&#10;#&#9;out/artifacts/fenglong_war_exploded/WEB-INF/lib/spring-test-4.1.6.RELEASE.jar&#10;#&#9;out/artifacts/fenglong_war_exploded/WEB-INF/lib/spring-tx-4.1.6.RELEASE.jar&#10;#&#9;out/artifacts/fenglong_war_exploded/WEB-INF/lib/spring-web-4.1.6.RELEASE.jar&#10;#&#9;out/artifacts/fenglong_war_exploded/WEB-INF/lib/spring-webmvc-4.1.6.RELEASE.jar&#10;#&#9;out/artifacts/fenglong_war_exploded/WEB-INF/lib/spring-websocket-4.1.6.RELEASE.jar&#10;#&#9;out/artifacts/fenglong_war_exploded/WEB-INF/lib/ssm-base-1.5.jar&#10;#&#9;out/artifacts/fenglong_war_exploded/WEB-INF/lib/standard-1.1.2.jar&#10;#&#9;out/artifacts/fenglong_war_exploded/WEB-INF/lib/tools.jar&#10;#&#9;out/artifacts/fenglong_war_exploded/WEB-INF/pages/common/base.jsp&#10;#&#9;out/artifacts/fenglong_war_exploded/WEB-INF/pages/error/403.jsp&#10;#&#9;out/artifacts/fenglong_war_exploded/WEB-INF/pages/error/404.jsp&#10;#&#9;out/artifacts/fenglong_war_exploded/WEB-INF/pages/error/500.jsp&#10;#&#9;out/artifacts/fenglong_war_exploded/WEB-INF/pages/error/error-business.jsp&#10;#&#9;out/artifacts/fenglong_war_exploded/WEB-INF/pages/error/error-parameter.jsp&#10;#&#9;out/artifacts/fenglong_war_exploded/WEB-INF/pages/error/error.jsp&#10;#&#9;out/artifacts/fenglong_war_exploded/WEB-INF/pages/index.jsp&#10;#&#9;out/artifacts/fenglong_war_exploded/WEB-INF/web.xml&#10;#&#9;out/artifacts/fenglong_war_exploded/static/common/common.js&#10;#&#9;out/artifacts/fenglong_war_exploded/static/files/.gitkeep&#10;#&#9;out/artifacts/fenglong_war_exploded/static/fonts/.gitkeep&#10;#&#9;out/artifacts/fenglong_war_exploded/static/images/.gitkeep&#10;#&#9;out/artifacts/fenglong_war_exploded/static/js/.gitkeep&#10;#&#9;pom.xml&#10;#&#9;target/classes/config/ds/ds-c3p0.properties&#10;#&#9;target/classes/config/ds/ds-druid.properties&#10;#&#9;target/classes/config/ds/ds-jdbc.properties&#10;#&#9;target/classes/config/log/log4j.properties&#10;#&#9;target/classes/config/spring/web/spring-mvc.xml&#10;#&#9;target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst&#10;#&#9;target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst">
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/scau/zxck/web/IndexAction.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/scau/zxck/web/interceptor/LogInterceptor.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/ssm-framework.war" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/scau/zxck/entity/market/Fetchorder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/scau/zxck/entity/market/Fetchorder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/scau/zxck/entity/market/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/scau/zxck/entity/market/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/scau/zxck/service/market/IFetchOrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/scau/zxck/service/market/IFetchOrderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/scau/zxck/serviceImpl/market/FetchOrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/scau/zxck/serviceImpl/market/FetchOrderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/scau/zxck/web/admin/OrderInfoAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/scau/zxck/web/admin/OrderInfoAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/scau/zxck/web/admin/RegisterAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/scau/zxck/web/admin/RegisterAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/scau/zxck/web/admin/SecureAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/scau/zxck/web/admin/SecureAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/scau/zxck/web/admin/UserInfoAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/scau/zxck/web/admin/UserInfoAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/test/scau/zxck/web/admin/OrderInfoActionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/test/scau/zxck/web/admin/OrderInfoActionTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/config/spring/web/spring-mvc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config/spring/web/spring-mvc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/config/spring/aop/spring-aop.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/config/spring/db/spring-db-datasource.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/config/spring/db/spring-db-mybatis.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/config/spring/db/spring-db-tx.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/config/spring/db/spring-db.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/config/spring/spring.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/config/spring/web/spring-mvc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/config/spring/web/spring-mvc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -18,58 +34,39 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="User.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/scau/zxck/entity/market/User.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="726">
-              <caret line="85" column="18" selection-start-line="85" selection-start-column="18" selection-end-line="85" selection-end-column="18" />
+            <state relative-caret-position="378">
+              <caret line="19" selection-start-line="19" selection-end-line="19" />
+              <folding>
+                <element signature="e#578#579#0" expanded="true" />
+                <element signature="e#611#612#0" expanded="true" />
+                <element signature="e#663#664#0" expanded="true" />
+                <element signature="e#707#708#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="testAction.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/scau/zxck/web/test/testAction.java">
+      <file leaf-file-name="Fetchorder.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/scau/zxck/entity/market/Fetchorder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="124">
-              <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserMapper.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/scau/zxck/mapper/market/UserMapper.xml">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file leaf-file-name="log4j.properties" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/config/log/log4j.properties">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="675">
-              <caret line="25" column="32" selection-start-line="25" selection-start-column="32" selection-end-line="25" selection-end-column="32" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="OrderInfoAction.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/scau/zxck/web/admin/OrderInfoAction.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="81">
-              <caret line="3" column="22" selection-start-line="3" selection-start-column="7" selection-end-line="3" selection-end-column="22" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JwtUtil.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/scau/zxck/utils/JwtUtil.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="8" column="25" lean-forward="true" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="25" />
+            <state relative-caret-position="506">
+              <caret line="87" selection-start-line="87" selection-end-line="87" />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -77,8 +74,16 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/scau/zxck/web/admin/OrderInfoAction.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/scau/zxck/service/market/IUserService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/scau/zxck/serviceImpl/market/UserService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/scau/zxck/web/admin/UserInfoAction.java" />
+        <option value="$PROJECT_DIR$/src/main/java/test/scau/zxck/web/admin/OrderInfoActionTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/scau/zxck/serviceImpl/market/FetchOrderService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/scau/zxck/service/market/IFetchOrderService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/scau/zxck/web/admin/OrderInfoAction.java" />
+        <option value="$PROJECT_DIR$/src/main/java/scau/zxck/entity/market/User.java" />
+        <option value="$PROJECT_DIR$/src/main/java/scau/zxck/entity/market/Fetchorder.java" />
       </list>
     </option>
   </component>
@@ -103,13 +108,14 @@
     <option name="width" value="845" />
     <option name="height" value="970" />
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -159,7 +165,35 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="zxck" type="462c0819:PsiDirectoryNode" />
-              <item name="utils" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="fenglong" type="b2602c69:ProjectViewProjectNode" />
+              <item name="runningMan" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="zxck" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="fenglong" type="b2602c69:ProjectViewProjectNode" />
+              <item name="runningMan" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="zxck" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+              <item name="interceptor" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="fenglong" type="b2602c69:ProjectViewProjectNode" />
+              <item name="runningMan" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="fenglong" type="b2602c69:ProjectViewProjectNode" />
@@ -178,6 +212,26 @@
             </path>
             <path>
               <item name="fenglong" type="b2602c69:ProjectViewProjectNode" />
+              <item name="runningMan" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="fenglong" type="b2602c69:ProjectViewProjectNode" />
+              <item name="runningMan" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name=".idea" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="fenglong" type="b2602c69:ProjectViewProjectNode" />
+              <item name="runningMan" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="fenglong" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
           </expand>
@@ -185,6 +239,7 @@
         </subPane>
       </pane>
       <pane id="AndroidView" />
+      <pane id="PackagesPane" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -211,9 +266,32 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.OrderInfoActionTest.getAllCategoryTest">
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+    </configuration>
+    <configuration name="OrderInfoActionTest.getAllCategoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="fenglong" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.scau.zxck.web.admin.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="test.scau.zxck.web.admin" />
+      <option name="MAIN_CLASS_NAME" value="test.scau.zxck.web.admin.OrderInfoActionTest" />
+      <option name="METHOD_NAME" value="getAllCategoryTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <patterns />
     </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -278,6 +356,15 @@
       <properties />
       <listeners />
     </configuration>
+    <list>
+      <item itemvalue="Maven.maven" />
+      <item itemvalue="JUnit.OrderInfoActionTest.getAllCategoryTest" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.OrderInfoActionTest.getAllCategoryTest" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -290,46 +377,55 @@
       <option name="presentableId" value="Default" />
       <updated>1538118954083</updated>
       <workItem from="1538118955840" duration="4668000" />
+      <workItem from="1538307885516" duration="7211000" />
+      <workItem from="1538316212333" duration="179000" />
+      <workItem from="1538317575678" duration="25000" />
+      <workItem from="1538317629160" duration="21000" />
     </task>
     <servers />
   </component>
+  <component name="TestHistory">
+    <history-entry file="OrderInfoActionTest_getAllCategoryTest - 2018.09.30 at 20h 11m 47s.xml">
+      <configuration name="OrderInfoActionTest.getAllCategoryTest" configurationId="JUnit" />
+    </history-entry>
+  </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4668000" />
+    <option name="totallyTimeSpent" value="12104000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info anchor="right" id="Palette" />
+      <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" id="Palette&#9;" />
-      <window_info id="Image Layers" />
-      <window_info anchor="bottom" id="Java Enterprise" />
-      <window_info anchor="right" id="Capture Analysis" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
-      <window_info anchor="right" id="Maven Projects" />
-      <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.60294116" />
-      <window_info anchor="bottom" id="Version Control" />
-      <window_info anchor="bottom" id="Spring" />
-      <window_info anchor="bottom" id="Terminal" />
-      <window_info id="Capture Tool" />
-      <window_info id="Designer" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24962178" />
-      <window_info id="Web" side_tool="true" />
-      <window_info anchor="right" id="Database" />
+      <window_info anchor="right" id="Palette&#9;" order="3" />
+      <window_info id="Image Layers" order="2" />
+      <window_info anchor="bottom" id="Java Enterprise" order="7" />
+      <window_info anchor="right" id="Capture Analysis" order="3" />
+      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
+      <window_info anchor="right" id="Maven Projects" order="3" />
+      <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.03267974" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Spring" order="7" />
+      <window_info anchor="bottom" id="Terminal" order="7" />
+      <window_info id="Capture Tool" order="2" />
+      <window_info id="Designer" order="2" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.204236" />
+      <window_info id="Web" order="2" side_tool="true" />
+      <window_info anchor="right" id="Database" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info id="UI Designer" />
-      <window_info anchor="right" id="Theme Preview" />
+      <window_info id="UI Designer" order="2" />
+      <window_info anchor="right" id="Theme Preview" order="3" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info id="Favorites" side_tool="true" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Messages" order="8" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -338,11 +434,170 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/scau/zxck/web/admin/OrderInfoAction.java</url>
+          <line>191</line>
+          <properties class="scau.zxck.web.admin.OrderInfoAction" method="updateFetchOrder">
+            <option name="EMULATED" value="true" />
+          </properties>
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/scau/zxck/web/admin/OrderInfoAction.java</url>
+          <line>48</line>
+          <properties class="scau.zxck.web.admin.OrderInfoAction" method="addFetchOrder">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="2" />
+    </breakpoint-manager>
+  </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/main/java/scau/zxck/entity/market/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
+          <folding>
+            <element signature="e#578#579#0" expanded="true" />
+            <element signature="e#611#612#0" expanded="true" />
+            <element signature="e#663#664#0" expanded="true" />
+            <element signature="e#707#708#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/scau/zxck/entity/market/Fetchorder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2133">
+          <caret line="87" selection-start-line="87" selection-end-line="87" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/scau/zxck/entity/market/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="513">
+          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+          <folding>
+            <element signature="e#578#579#0" expanded="true" />
+            <element signature="e#611#612#0" expanded="true" />
+            <element signature="e#663#664#0" expanded="true" />
+            <element signature="e#707#708#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/scau/zxck/entity/market/Fetchorder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2349">
+          <caret line="87" lean-forward="true" selection-start-line="87" selection-end-line="87" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/test/scau/zxck/web/admin/OrderInfoActionTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="648">
+          <caret line="53" column="16" selection-start-line="53" selection-start-column="16" selection-end-line="53" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/scau/zxck/serviceImpl/market/UserService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1296">
+          <caret line="48" column="22" lean-forward="true" selection-start-line="48" selection-start-column="22" selection-end-line="48" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/scau/zxck/service/market/IUserService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="513">
+          <caret line="23" column="68" lean-forward="true" selection-start-line="23" selection-start-column="4" selection-end-line="23" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/scau/zxck/service/market/IFetchOrderService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="351">
+          <caret line="19" column="22" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/scau/zxck/serviceImpl/market/FetchOrderService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1269">
+          <caret line="58" column="1" lean-forward="true" selection-start-line="58" selection-start-column="1" selection-end-line="58" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/scau/zxck/entity/market/Fetchorder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2700">
+          <caret line="136" column="15" selection-start-line="136" selection-start-column="15" selection-end-line="136" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/scau/zxck/web/interceptor/Tokenterceptor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="567">
+          <caret line="33" column="45" selection-start-line="33" selection-start-column="38" selection-end-line="33" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/scau/zxck/web/admin/OrderInfoAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8397">
+          <caret line="311" column="76" selection-start-line="311" selection-start-column="76" selection-end-line="311" selection-end-column="76" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#addFetchOrder#0;class#OrderInfoAction#0" />
+            <element signature="method#addShoppingOrder#0;class#OrderInfoAction#0" />
+            <element signature="method#getAllOrder#0;class#OrderInfoAction#0" />
+            <element signature="method#getOneOrder#0;class#OrderInfoAction#0" />
+            <element signature="method#updateFetchOrder#0;class#OrderInfoAction#0" />
+            <element signature="method#updateShoppingOrder#0;class#OrderInfoAction#0" />
+            <element signature="method#deleteOrder#0;class#OrderInfoAction#0" />
+            <element signature="method#getPlaceOrder#0;class#OrderInfoAction#0" />
+            <element signature="method#acceptOrder#0;class#OrderInfoAction#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2295">
+          <caret line="85" column="18" selection-start-line="85" selection-start-column="18" selection-end-line="85" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/scau/zxck/mapper/market/UserMapper.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/config/log/log4j.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="675">
           <caret line="25" column="32" selection-start-line="25" selection-start-column="32" selection-end-line="25" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/scau/zxck/web/admin/OrderInfoAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="81">
+          <caret line="3" column="22" selection-start-line="3" selection-start-column="7" selection-end-line="3" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#addFetchOrder#0;class#OrderInfoAction#0" />
+            <element signature="method#addShoppingOrder#0;class#OrderInfoAction#0" />
+            <element signature="method#getAllOrder#0;class#OrderInfoAction#0" />
+            <element signature="method#getOneOrder#0;class#OrderInfoAction#0" />
+            <element signature="method#updateFetchOrder#0;class#OrderInfoAction#0" />
+            <element signature="method#updateShoppingOrder#0;class#OrderInfoAction#0" />
+            <element signature="method#deleteOrder#0;class#OrderInfoAction#0" />
+            <element signature="method#getPlaceOrder#0;class#OrderInfoAction#0" />
+            <element signature="method#acceptOrder#0;class#OrderInfoAction#0" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -353,27 +608,139 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/scau/zxck/web/admin/OrderInfoAction.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/scau/zxck/web/test/testAction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="81">
-          <caret line="3" column="22" selection-start-line="3" selection-start-column="7" selection-end-line="3" selection-end-column="22" />
+        <state relative-caret-position="621">
+          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/config/log/log4j.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="675">
+          <caret line="25" column="32" selection-start-line="25" selection-start-column="32" selection-end-line="25" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/scau/zxck/utils/JwtUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="8" column="25" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="25" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/scau/zxck/mapper/market/UserMapper.xml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
+    <entry file="file://$PROJECT_DIR$/src/main/java/scau/zxck/web/test/testAction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="726">
-          <caret line="85" column="18" selection-start-line="85" selection-start-column="18" selection-end-line="85" selection-end-column="18" />
+        <state relative-caret-position="610">
+          <caret line="23" selection-start-line="23" selection-end-line="23" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/scau/zxck/web/test/testAction.java">
+    <entry file="file://$MAVEN_REPOSITORY$/io/jsonwebtoken/jjwt/0.9.0/jjwt-0.9.0.pom">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="124">
-          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
+        <state relative-caret-position="105">
+          <caret line="58" column="18" selection-start-line="58" selection-start-column="18" selection-end-line="58" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/scau/zxck/web/admin/UserInfoAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="111" lean-forward="true" selection-start-line="111" selection-end-line="111" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/scau/zxck/web/interceptor/Tokenterceptor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="567">
+          <caret line="33" column="45" selection-start-line="33" selection-start-column="38" selection-end-line="33" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/test/scau/zxck/web/admin/OrderInfoActionTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="648">
+          <caret line="53" column="16" selection-start-line="53" selection-start-column="16" selection-end-line="53" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/scau/zxck/service/market/IUserService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="513">
+          <caret line="23" column="68" selection-start-line="23" selection-start-column="4" selection-end-line="23" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/scau/zxck/serviceImpl/market/UserService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1080">
+          <caret line="48" column="22" selection-start-line="48" selection-start-column="22" selection-end-line="48" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/scau/zxck/serviceImpl/market/FetchOrderService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1269">
+          <caret line="58" column="1" selection-start-line="58" selection-start-column="1" selection-end-line="58" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/scau/zxck/service/market/IFetchOrderService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="351">
+          <caret line="19" column="22" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/scau/zxck/web/admin/OrderInfoAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="311" column="76" selection-start-line="311" selection-start-column="76" selection-end-line="311" selection-end-column="76" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#addFetchOrder#0;class#OrderInfoAction#0" />
+            <element signature="method#addShoppingOrder#0;class#OrderInfoAction#0" />
+            <element signature="method#getAllOrder#0;class#OrderInfoAction#0" />
+            <element signature="method#getOneOrder#0;class#OrderInfoAction#0" />
+            <element signature="method#updateFetchOrder#0;class#OrderInfoAction#0" />
+            <element signature="method#updateShoppingOrder#0;class#OrderInfoAction#0" />
+            <element signature="method#deleteOrder#0;class#OrderInfoAction#0" />
+            <element signature="method#getPlaceOrder#0;class#OrderInfoAction#0" />
+            <element signature="method#acceptOrder#0;class#OrderInfoAction#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/scau/zxck/dao/market/FetchOrderDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/scau/zxck/entity/market/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
+          <folding>
+            <element signature="e#578#579#0" expanded="true" />
+            <element signature="e#611#612#0" expanded="true" />
+            <element signature="e#663#664#0" expanded="true" />
+            <element signature="e#707#708#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/scau/zxck/entity/market/Fetchorder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="506">
+          <caret line="87" selection-start-line="87" selection-end-line="87" />
         </state>
       </provider>
     </entry>

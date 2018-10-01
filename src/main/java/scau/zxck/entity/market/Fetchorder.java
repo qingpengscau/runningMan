@@ -55,6 +55,13 @@ public class Fetchorder extends Unique {
     private String order_start_time;
     @Column(name = "order_finish_time")
     private String order_finish_time;
+
+    @Column(name = "price")
+    private double price;
+
+    @Column(name = "pick_time")
+    private double pick_time;
+
     @Column(name = "fee")
     private double fee;
     @Column(name = "issue_descri")

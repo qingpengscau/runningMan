@@ -17,6 +17,17 @@ public class User extends Unique {
     private int user_sex;
     @Column(name="location")
     private String location;
+
+    public String getIamge_path() {
+        return iamge_path;
+    }
+
+    public void setIamge_path(String iamge_path) {
+        this.iamge_path = iamge_path;
+    }
+
+    @Column(name="iamge_path")
+    private String iamge_path;
     @Column(name="gold")
     private int gold;
     @Column(name="user_cell")

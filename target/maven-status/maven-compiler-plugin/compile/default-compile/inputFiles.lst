@@ -1,5 +1,6 @@
 C:\Users\Administrator\Desktop\keke\runningMan\src\main\java\scau\zxck\web\admin\UserInfoAction.java
 C:\Users\Administrator\Desktop\keke\runningMan\src\main\java\scau\zxck\dao\market\UserDao.java
+C:\Users\Administrator\Desktop\keke\runningMan\src\main\java\scau\zxck\serviceImpl\market\UserService.java
 C:\Users\Administrator\Desktop\keke\runningMan\src\main\java\scau\zxck\utils\WriteJson.java
 C:\Users\Administrator\Desktop\keke\runningMan\src\main\java\scau\zxck\entity\market\User.java
 C:\Users\Administrator\Desktop\keke\runningMan\src\main\java\test\scau\zxck\web\admin\OrderInfoActionTest.java
@@ -16,6 +17,7 @@ C:\Users\Administrator\Desktop\keke\runningMan\src\main\java\test\scau\zxck\web\
 C:\Users\Administrator\Desktop\keke\runningMan\src\main\java\scau\zxck\web\interceptor\Tokenterceptor.java
 C:\Users\Administrator\Desktop\keke\runningMan\src\main\java\scau\zxck\entity\market\Secure.java
 C:\Users\Administrator\Desktop\keke\runningMan\src\main\java\scau\zxck\web\admin\SecureAction.java
+C:\Users\Administrator\Desktop\keke\runningMan\src\main\java\scau\zxck\service\market\IUserService.java
 C:\Users\Administrator\Desktop\keke\runningMan\src\main\java\scau\zxck\service\market\IUnionStaffService.java
 C:\Users\Administrator\Desktop\keke\runningMan\src\main\java\scau\zxck\web\admin\ChargeAction.java
 C:\Users\Administrator\Desktop\keke\runningMan\src\main\java\scau\zxck\entity\market\UnionStaff.java

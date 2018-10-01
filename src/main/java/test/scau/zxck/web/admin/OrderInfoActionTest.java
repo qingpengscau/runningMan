@@ -82,7 +82,7 @@ public class OrderInfoActionTest {
         System.out.println(s);
         JsonObject returnData = new JsonParser().parse(name).getAsJsonObject();
 
-      String responseString = mockMvc.perform( post("/addShoppingOrder").contentType(MediaType.APPLICATION_FORM_URLENCODED).param("departure","guanshuai").content(s)).andDo(print())
+      String responseString = mockMvc.perform( post("/addShoppingOrder").contentType(MediaType.APPLICATION_JSON_VALUE).content("")).andDo(print())
               .andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
     }
 }

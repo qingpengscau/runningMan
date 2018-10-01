@@ -1,5 +1,6 @@
 package scau.zxck.service.market;
 
+import scau.zxck.base.dao.mybatis.Conditions;
 import scau.zxck.base.dao.utils.Page;
 import scau.zxck.base.exception.BaseException;
 import scau.zxck.entity.market.Fetchorder;
@@ -16,4 +17,5 @@ public interface IFetchOrderService {
     void deleteFetchorder(String id) throws BaseException;
     Fetchorder findByid(String id) throws  BaseException;
     void updateFetchOrder(Fetchorder fetchorder) throws BaseException;
+    List< Fetchorder> listFetchorder(Conditions conditions) throws BaseException;
 }

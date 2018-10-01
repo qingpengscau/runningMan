@@ -26,6 +26,7 @@ import java.util.concurrent.locks.Condition;
 import scau.zxck.utils.ReadJson;
 import scau.zxck.utils.WriteJson;
 @Controller
+@RequestMapping(value = "/")
 public class SecureAction {
     @Autowired
     private ISecureService iSecureService;
