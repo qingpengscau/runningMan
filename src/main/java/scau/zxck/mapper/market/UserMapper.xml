@@ -28,7 +28,7 @@
         ${sql}
     </select>
 
-    <select id="count" parameterType="SQLAdapter" resultType="User" >
+    <select id="count" parameterType="SQLAdapter" resultType="long" >
         ${sql}
     </select>
 

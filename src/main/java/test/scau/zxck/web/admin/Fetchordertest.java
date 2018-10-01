@@ -1,29 +1,11 @@
-package scau.zxck.entity.market;
+package test.scau.zxck.web.admin;
 
 import scau.zxck.base.dao.annotation.Column;
 import scau.zxck.base.dao.annotation.Table;
 import scau.zxck.base.dao.entity.Unique;
+
 @Table(name = "fetch_order_info")
-public class Fetchorder extends Unique {
-    /*
-    *  `id` varchar(255) NOT NULL,
-  `release_man_id` varchar(50) NOT NULL,
-  `execute_man_id` varchar(50) DEFAULT NULL,
-  `receive_man_id` varchar(50) NOT NULL,
-  `release_time` varchar(20) NOT NULL,
-  `departure` varchar(50) NOT NULL,
-  `destination` varchar(50) NOT NULL,
-  `weight` double(5,0) DEFAULT NULL,
-  `type` int(1) NOT NULL,
-  `prewait_time` int(5) DEFAULT NULL,
-  `express_company` varchar(20) DEFAULT NULL,
-  `order_start_time` varchar(20) DEFAULT NULL,
-  `order_finish_time` varchar(20) DEFAULT NULL,
-  `fee` double(10,0) NOT NULL,
-  `issue_descri` varchar(255) NOT NULL,
-  `status` int(1) NOT NULL,
-  `comment` varchar(50) DEFAULT NULL,
-  `remark` int(1) NOT NULL,*/
+public class Fetchordertest extends Unique {
     @Column(name = "release_man_id")
     private String release_man_id;
     @Column(name = "execute_man_id")
@@ -34,17 +16,10 @@ public class Fetchorder extends Unique {
     private String release_time;
     @Column(name = "departure")
     private String departure;
-
-
-
     @Column(name = "destination")
     private String destination;
     @Column(name = "weight")
-    private double weight;
-    @Column(name = "commondity")
-    private String commondity;
-    @Column(name = "commondity_picture")
-    private String commondity_picture;
+    private String weight;
     @Column(name = "type")
     private int type;
     @Column(name = "prewait_time")
@@ -55,13 +30,6 @@ public class Fetchorder extends Unique {
     private String order_start_time;
     @Column(name = "order_finish_time")
     private String order_finish_time;
-
-    @Column(name = "price")
-    private double price;
-
-    @Column(name = "pick_time")
-    private double pick_time;
-
     @Column(name = "fee")
     private double fee;
     @Column(name = "issue_descri")
@@ -74,21 +42,7 @@ public class Fetchorder extends Unique {
     private int remark;
 
 
-    public String getCommondity() {
-        return commondity;
-    }
 
-    public void setCommondity(String commondity) {
-        this.commondity = commondity;
-    }
-
-    public String getCommondity_picture() {
-        return commondity_picture;
-    }
-
-    public void setCommondity_picture(String commondity_picture) {
-        this.commondity_picture = commondity_picture;
-    }
     public String getRelease_man_id() {
         return release_man_id;
     }
@@ -137,11 +91,11 @@ public class Fetchorder extends Unique {
         this.destination = destination;
     }
 
-    public double getWeight() {
+    public String getWeight() {
         return weight;
     }
 
-    public void setWeight(double weight) {
+    public void setWeight(String weight) {
         this.weight = weight;
     }
 
@@ -223,5 +177,28 @@ public class Fetchorder extends Unique {
 
     public void setRemark(int remark) {
         this.remark = remark;
+    }
+
+    @Override
+    public String toString() {
+        return "Fetchordertest{" +
+                "release_man_id='" + release_man_id + '\'' +
+                ", execute_man_id='" + execute_man_id + '\'' +
+                ", receive_man_id='" + receive_man_id + '\'' +
+                ", release_time='" + release_time + '\'' +
+                ", departure='" + departure + '\'' +
+                ", destination='" + destination + '\'' +
+                ", weight='" + weight + '\'' +
+                ", type=" + type +
+                ", prewait_time=" + prewait_time +
+                ", express_company='" + express_company + '\'' +
+                ", order_start_time='" + order_start_time + '\'' +
+                ", order_finish_time='" + order_finish_time + '\'' +
+                ", fee=" + fee +
+                ", issue_descri='" + issue_descri + '\'' +
+                ", status=" + status +
+                ", comment='" + comment + '\'' +
+                ", remark=" + remark +
+                '}';
     }
 }
