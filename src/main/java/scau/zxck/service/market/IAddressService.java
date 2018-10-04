@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Created by suruijia on 2016/1/29.
  */
-public interface IReceiverService {
+public interface IAddressService {
     String addReceiver(Address receiver) throws BaseException;
      <v> List<v> listAll() throws BaseException;
     void deleteReceiver(String id) throws BaseException;
