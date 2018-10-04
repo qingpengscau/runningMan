@@ -14,7 +14,7 @@ import scau.zxck.base.dao.mybatis.Conditions;
 import scau.zxck.base.exception.BaseException;
 import scau.zxck.entity.market.Address;
 import scau.zxck.entity.market.User;
-import scau.zxck.service.market.IReceiverService;
+import scau.zxck.service.market.IAddressService;
 import scau.zxck.service.market.IUserService;
 import scau.zxck.utils.WriteJson;
 
@@ -33,7 +33,7 @@ public class DeliverAddressAction {
     @Autowired
     private IUserService userService;
     @Autowired
-    private IReceiverService receiverService;
+    private IAddressService receiverService;
     @Autowired
     private HttpServletRequest request;
     @Autowired

@@ -6,7 +6,7 @@ import scau.zxck.base.dao.mybatis.Conditions;
 import scau.zxck.base.exception.BaseException;
 import scau.zxck.dao.market.AddressDao;
 import scau.zxck.entity.market.Address;
-import scau.zxck.service.market.IReceiverService;
+import scau.zxck.service.market.IAddressService;
 
 import java.util.List;
 
@@ -15,7 +15,7 @@ import java.util.List;
  * Created by suruijia on 2016/1/29.
  */
 @Service
-public class ReceiverService implements IReceiverService {
+public class AddressService implements IAddressService {
     @Autowired
     private AddressDao receiverDao;
 

@@ -1,10 +1,5 @@
 package test.scau.zxck.web.admin;
 
-import com.alibaba.fastjson.JSON;
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.junit.Before;
@@ -15,14 +10,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
-import scau.zxck.entity.market.Fetchorder;
-import scau.zxck.web.admin.OrderInfoAction;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.logging.SimpleFormatter;
+import scau.zxck.web.admin.FetchOrderInfoAction;
+import scau.zxck.web.admin.ShoppingOrderInfoAction;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -50,10 +40,10 @@ public class OrderInfoActionTest {
     private WebApplicationContext wac;
     private MockMvc mockMvc;
    @Autowired
-   private OrderInfoAction orderInfoAction;
+   private ShoppingOrderInfoAction fetchOrderInfoAction;
     @Before() // 这个方法在每个方法执行之前都会执行一遍
     public void setup() {
-        mockMvc = standaloneSetup(orderInfoAction).build(); // 初始化MockMvc对象
+        mockMvc = standaloneSetup(fetchOrderInfoAction).build(); // 初始化MockMvc对象
     }
 
     @org.junit.Test
@@ -82,7 +72,7 @@ public class OrderInfoActionTest {
         System.out.println(s);*/
        // JsonObject returnData = new JsonParser().parse(name).getAsJsonObject();
 
-      String responseString = mockMvc.perform( post("/getFetchingPlaceOrder").contentType(MediaType.APPLICATION_JSON_VALUE).content("")).andDo(print())
+      String responseString = mockMvc.perform( post("/getShoppingPlaceOrder").contentType(MediaType.APPLICATION_JSON_VALUE).content("")).andDo(print())
               .andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
     }
 }

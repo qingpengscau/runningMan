@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="scau.zxck.dao.market.UnionStaffDao">
+<mapper namespace="scau.zxck.dao.market.ShoppingOrderDao">
     <cache/>
 
     <insert id="add" parameterType="SQLAdapter">
@@ -19,17 +19,20 @@
     </delete>
 
     <!--这里的resultType需要修改为实际的entity-->
-    <select id="find" parameterType="SQLAdapter" resultType="UnionStaff" >
+    <select id="find" parameterType="SQLAdapter" resultType="ShoppingOrder" >
         ${sql}
     </select>
 
     <!--这里的resultType需要修改为实际的entity-->
-    <select id="list" parameterType="SQLAdapter" resultType="UnionStaff" >
+    <select id="list" parameterType="SQLAdapter" resultType="ShoppingOrder" >
         ${sql}
     </select>
 
     <select id="count" parameterType="SQLAdapter" resultType="long" >
         ${sql}
     </select>
+
+
+
 
 </mapper>
