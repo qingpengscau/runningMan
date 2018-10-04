@@ -1,8 +1,10 @@
 package scau.zxck.web.admin;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.google.gson.Gson;
 
+import com.google.gson.JsonArray;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,9 +36,9 @@ import java.util.concurrent.locks.Condition;
 
 @Controller
 @RequestMapping("/")
-/*@RunWith(SpringJUnit4ClassRunner.class)
+@RunWith(SpringJUnit4ClassRunner.class)
 
-@ContextConfiguration(locations = {"classpath:config/spring/spring.xml", "classpath:config/spring/web/spring-mvc.xml"})*/
+@ContextConfiguration(locations = {"classpath:config/spring/spring.xml", "classpath:config/spring/web/spring-mvc.xml"})
 public class OrderInfoAction {
     @Autowired
    private  IFetchOrderService fetchOrderService;
@@ -51,277 +53,220 @@ public class OrderInfoAction {
      request.setCharacterEncoding("utf-8");
      JSONObject data = ReadJSONUtil.readJSONStr(request);
 
-     String Departure = data.get("Departure").toString();
-     String Destination = data.get("Destination").toString();
-     String Receive_man = data.get("Receive_man").toString();
-     String Excute_Man = data.get("Excute_Man").toString();
+     String Departure_id = data.get("Departure_Id").toString();
+     String Destination_id = data.get("Destination_Id").toString();
+     String Pick_time = data.get("Pick_time").toString();
+     String Prewait_Time = data.get("Prewait_Time").toString();
      String Type = data.get("Type").toString();
      String Weight = data.get("Weight").toString();
-     String Pick_Time = data.get("Pick_Time").toString();
-     String Pre_Wait_Time = data.get("Pre_Wait_Time").toString();
      String Comment = data.get("Comment").toString();
      String Fee = data.get("Fee").toString();
-     String Issue_descri = data.get("Issue_descri").toString();
-     String Status = data.get("Status").toString();
+
        Fetchorder fetchorder=new Fetchorder();
        SimpleDateFormat sf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        fetchorder.setRelease_man_id((String) session.getAttribute("User_Id"));
-        fetchorder.setReceive_man_id(Receive_man);
-        fetchorder.setRelease_time(sf.format(new Date()));
-        fetchorder.setDeparture(Departure);
-        fetchorder.setDestination(Destination);
-        fetchorder.setType(Integer.parseInt(Type));
-        fetchorder.setWeight(Double.parseDouble(Weight));
-        fetchorder.setPrewait_time(Integer.parseInt(Pre_Wait_Time));
-        fetchorder.setComment(Comment);
-        fetchorder.setFee(Integer.parseInt(Fee));
-        fetchorder.setIssue_descri(Issue_descri);
-        fetchorder.setStatus(Integer.parseInt(Status));
-        fetchorder.setRemark(0);
+       fetchorder.setDeparture_id(Departure_id);
+       fetchorder.setDestination_id(Destination_id);
+       fetchorder.setPick_time(Pick_time);
+       fetchorder.setPrewait_time(Integer.parseInt(Prewait_Time));
+       fetchorder.setType(Integer.parseInt(Type));
+       fetchorder.setWeight(Double.parseDouble(Weight));
+       fetchorder.setComment(Comment);
+       fetchorder.setFee(Double.parseDouble(Fee));
+       fetchorder.setRelease_man_id(String.valueOf(session.getAttribute("User_Id")));
+       fetchorder.setStatus(0);
+       fetchorder.setRelease_time(sf.format(new Date()));
+
          fetchOrderService.addFetchorder(fetchorder);
 
-     Gson gson=new Gson();
 
      JSONObject jsonObject=new JSONObject();
-     jsonObject.put("status","0");
-     jsonObject.put("data",gson.toJson(fetchorder));
+     jsonObject.put("status","1");
+     jsonObject.put("data","");
      String s =jsonObject.toJSONString();
      PrintWriter writer = response.getWriter();
      writer.write(s);
      writer.flush();
 
  }
-    @RequestMapping(value = "addShoppingOrder", method = RequestMethod.POST)
-    public void addShoppingOrder(HttpServletResponse response) throws Exception {
-                /*
-                * “Token”:
-”Departure”:(要去购买的地方）,
-”Destination”:(要送到的地方),
-”Commodity”
-”Commodity_Picture”（图片的路径）
-“Pick_Time”（购买时间）
-”comment”(备注）
-”Price”
-“Receive_man”：
-”Fee”（支付的费用）
-“Status”:(表明是代购还是取送件）
-}*/
+
+    @RequestMapping(value = "getAllFetchingOrder", method = RequestMethod.POST)
+    public void getAllFetchingOrder(HttpServletResponse response) throws Exception {
         request.setCharacterEncoding("utf-8");
         JSONObject data = ReadJSONUtil.readJSONStr(request);
-        String Departure = data.get("Departure").toString();
-        String Destination = data.get("Destination").toString();
-        String Pick_Time = data.get("Pick_Time").toString();
-        String Commodity = data.get("Commodity").toString();
-        String Receive_man = data.get("Receive_man").toString();
-        String Commodity_Picture = data.get("Commodity_Picture").toString();
-        String Comment = data.get("Comment").toString();
-        String Fee = data.get("Fee").toString();
-        String Status = data.get("Status").toString();
-        Fetchorder fetchorder=new Fetchorder();
-        SimpleDateFormat sf=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-        fetchorder.setRelease_man_id((String) session.getAttribute("User_Id"));
-        fetchorder.setReceive_man_id(Receive_man);
-        fetchorder.setCommondity(Commodity);
-        fetchorder.setCommondity_picture(Commodity_Picture);
-        fetchorder.setRelease_time(sf.format(new Date()));
-        fetchorder.setDeparture(Departure);
+        String User_Id=session.getAttribute("User_Id").toString();
+        Conditions conditions=new Conditions();
+        List<Fetchorder> fetchorders = fetchOrderService.listFetchorder(conditions.eq("release_man_id", User_Id));
+        JSONArray temp=new JSONArray();
+        for(int i=0;i<fetchorders.size();i++)
+     {
+         JSONObject json=new JSONObject();
+         json.put("orderId",fetchorders.get(i).getId());
+         json.put("departure",fetchorders.get(i).getDeparture_id());
+         json.put("destination",fetchorders.get(i).getDestination_id());
+         json.put("receiveMan",fetchorders.get(i).getId());
+         json.put("weight",fetchorders.get(i).getWeight());
+         json.put("pickTime",fetchorders.get(i).getPick_time());
+         json.put("preWaitTime",fetchorders.get(i).getPrewait_time());
+         json.put("comment",fetchorders.get(i).getComment());
+         json.put("fee",fetchorders.get(i).getFee());
+         json.put("releaseTime",fetchorders.get(i).getRelease_time());
+         json.put("status",1);
+         json.put("fee",fetchorders.get(i).getFee());
+         json.put("state",fetchorders.get(i).getStatus());
 
-        fetchorder.setDestination(Destination);
-        fetchorder.setComment(Comment);
-        fetchorder.setFee(Integer.parseInt(Fee));
 
-        fetchorder.setStatus(Integer.parseInt(Status));
-        fetchorder.setRemark(0);
-        fetchOrderService.addFetchorder(fetchorder);
+         temp.add(json);
+     }
+     JSONObject result=new JSONObject();
+        result.put("status","1");
+        result.put("data",temp);
 
-        Gson gson=new Gson();
-
-        JSONObject jsonObject=new JSONObject();
-        jsonObject.put("status","0");
-        jsonObject.put("data",gson.toJson(fetchorder));
-        String s =jsonObject.toJSONString();
         PrintWriter writer = response.getWriter();
-        writer.write(s);
+        writer.write(result.toString());
         writer.flush();
-
     }
-    @RequestMapping(value = "getAllOrder", method = RequestMethod.POST)
-    public void getAllOrder(HttpServletResponse response) throws IOException, BaseException {
 
-
-
-           List list=  fetchOrderService.listAll();
-
-          List<Fetchorder> fetchorders=new ArrayList<>();
-
-        for (Iterator iter = ((java.util.List) list).iterator(); iter.hasNext(); )
+    @RequestMapping(value = "isFetchOrderAccepted", method = RequestMethod.POST)
+    public void isFetchOrderAccepted(HttpServletResponse response) throws Exception
+    {
+        request.setCharacterEncoding("utf-8");
+        JSONObject data = ReadJSONUtil.readJSONStr(request);
+        String Order_Id = data.get("Order_Id").toString();
+        Conditions conditions=new Conditions();
+        Fetchorder fetchorder = fetchOrderService.findByid(Order_Id);
+        JSONObject result=new JSONObject();
+        if(fetchorder.getStatus()>0)
         {
-            Fetchorder fetchorder= (Fetchorder) iter.next();
-            fetchorders.add(fetchorder);
+           result.put("isAccepted","1");
         }
-
-
-
-        Gson gson=new Gson();
-        JSONObject jsonObject=new JSONObject();
-        jsonObject.put("status","1");
-        jsonObject.put("data",gson.toJson(fetchorders));
+        else
+        {
+            result.put("isAccepted","0");
+        }
+        result.put("status","1");
 
         PrintWriter writer = response.getWriter();
-        writer.write(jsonObject.toString());
-        writer.flush();
-
-
-    }
-    @RequestMapping(value = "getOneOrder", method = RequestMethod.POST)
-    public void getOneOrder(HttpServletResponse response)throws Exception{
-        request.setCharacterEncoding("utf-8");
-        JSONObject data = ReadJSONUtil.readJSONStr(request);
-        //String Order_Id=data.get("Order_Id").toString();
-        Fetchorder fetchorder = fetchOrderService.findByid("d1bd0cfd76494ee8849a2cac82b706a1");
-        Gson gson=new Gson();
-        JSONObject jsonObject=new JSONObject();
-        jsonObject.put("status","1");
-        jsonObject.put("data",gson.toJson(fetchorder));
-
-        PrintWriter writer = response.getWriter();
-        writer.write(jsonObject.toString());
+        writer.write(result.toString());
         writer.flush();
     }
     @RequestMapping(value = "updateFetchOrder", method = RequestMethod.POST)
-    public void updateFetchOrder(HttpServletResponse response) throws Exception {
+    public void updateFetchOrder(HttpServletResponse response) throws Exception
+    {
         request.setCharacterEncoding("utf-8");
         JSONObject data = ReadJSONUtil.readJSONStr(request);
-        String OrderId = data.get("OrderId").toString();
-        String Departure = data.get("Departure").toString();
-        String Destination = data.get("Destination").toString();
-        String Receive_man = data.get("Receive_man").toString();
-        String Excute_Man = data.get("Excute_Man").toString();
+
+        String Order_Id = data.get("Order_Id").toString();
+        String Departure_id = data.get("Departure_Id").toString();
+        String Destination_id = data.get("Destination_Id").toString();
+        String Pick_time = data.get("Pick_time").toString();
+        String Prewait_Time = data.get("Prewait_Time").toString();
         String Type = data.get("Type").toString();
         String Weight = data.get("Weight").toString();
-        String Pick_Time = data.get("Pick_Time").toString();
-        String Pre_Wait_Time = data.get("Pre_Wait_Time").toString();
         String Comment = data.get("Comment").toString();
         String Fee = data.get("Fee").toString();
-        String Issue_descri = data.get("Issue_descri").toString();
-        String Status = data.get("Status").toString();
-        Fetchorder fetchorder=fetchOrderService.findByid(OrderId);
-        SimpleDateFormat sf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
+        Fetchorder fetchorder = fetchOrderService.findByid(Order_Id);
 
-
-        fetchorder.setReceive_man_id(Receive_man);
-        fetchorder.setRelease_time(sf.format(new Date()));
-        fetchorder.setDeparture(Departure);
-        fetchorder.setDestination(Destination);
+        fetchorder.setDeparture_id(Departure_id);
+        fetchorder.setDestination_id(Destination_id);
+        fetchorder.setPick_time(Pick_time);
+        fetchorder.setPrewait_time(Integer.parseInt(Prewait_Time));
         fetchorder.setType(Integer.parseInt(Type));
         fetchorder.setWeight(Double.parseDouble(Weight));
-        fetchorder.setPrewait_time(Integer.parseInt(Pre_Wait_Time));
         fetchorder.setComment(Comment);
-        fetchorder.setFee(Integer.parseInt(Fee));
-        fetchorder.setIssue_descri(Issue_descri);
-        fetchorder.setStatus(Integer.parseInt(Status));
-        fetchorder.setRemark(0);
+        fetchorder.setFee(Double.parseDouble(Fee));
         fetchOrderService.updateFetchOrder(fetchorder);
-        Gson gson=new Gson();
-        JSONObject jsonObject=new JSONObject();
-        jsonObject.put("status","1");
-        jsonObject.put("data","null");
-
+        JSONObject result=new JSONObject();
+        result.put("status","1");
+        result.put("data","");
+        System.out.println(result.toString());
         PrintWriter writer = response.getWriter();
-        writer.write(jsonObject.toString());
+        writer.write(result.toString());
         writer.flush();
-    }
-    @RequestMapping(value = "updateShoppingOrder", method = RequestMethod.POST)
-    public void updateShoppingOrder(HttpServletResponse response) throws Exception {
-/*
-“Token”:
-”Departure”:(要去购买的地方）,
-”Destination”:(要送到的地方),
-”Commodity”
-”Commodity_Picture”（图片的路径）
-“Pick_Time”（购买时间）
-”comment”(备注）
-”Price”
-”Fee”（支付的费用）
-“Status”:(表明是代购还是取送件）
-}*/
-        request.setCharacterEncoding("utf-8");
 
-        JSONObject data = ReadJSONUtil.readJSONStr(request);
-        String OrderId = data.get("OrderId").toString();
-        String Departure = data.get("Departure").toString();
-        String Destination = data.get("Destination").toString();
-        String Pick_Time = data.get("Pick_Time").toString();
-        String Commodity = data.get("Commodity").toString();
-        String Receive_man = data.get("Receive_man").toString();
-        String Commodity_Picture = data.get("Commodity_Picture").toString();
-        String Comment = data.get("Comment").toString();
-        String Fee = data.get("Fee").toString();
-        String Status = data.get("Status").toString();
-        Fetchorder fetchorder=fetchOrderService.findByid(OrderId);
-        fetchorder.setReceive_man_id(Receive_man);
-        fetchorder.setCommondity(Commodity);
-        fetchorder.setCommondity_picture(Commodity_Picture);
-        fetchorder.setDeparture(Departure);
-        fetchorder.setDestination(Destination);
-        fetchorder.setComment(Comment);
-        fetchorder.setFee(Integer.parseInt(Fee));
-        fetchorder.setStatus(Integer.parseInt(Status));
-        fetchorder.setRemark(0);
-        fetchOrderService.updateFetchOrder(fetchorder);
-        Gson gson=new Gson();
-        JSONObject jsonObject=new JSONObject();
-        jsonObject.put("status","0");
-        jsonObject.put("data",gson.toJson(fetchorder));
-        String s =jsonObject.toJSONString();
-        PrintWriter writer = response.getWriter();
-        writer.write(s);
-        writer.flush();
+
+
     }
-    @RequestMapping(value = "deleteOrder", method = RequestMethod.POST)
-    public void deleteOrder(HttpServletResponse response) throws Exception {
+
+    @RequestMapping(value = "deleteFetchingOrder", method = RequestMethod.POST)
+    public void deleteFetchingOrder(HttpServletResponse response) throws Exception
+    {
         request.setCharacterEncoding("utf-8");
         JSONObject data = ReadJSONUtil.readJSONStr(request);
+
         String Order_Id=data.get("Order_Id").toString();
-          fetchOrderService.deleteFetchorder(Order_Id);
-          JSONObject jsonObject=new JSONObject();
-          jsonObject.put("status","0");
+        fetchOrderService.deleteFetchorder(Order_Id);
+
+        JSONObject result=new JSONObject();
+        result.put("data","");
+        result.put("status","");
         PrintWriter writer = response.getWriter();
-        writer.write(jsonObject.toString());
-        writer.flush();
-    }
-    @RequestMapping(value = "getPlaceOrder", method = RequestMethod.POST)
-    public void getPlaceOrder(HttpServletResponse response) throws Exception {
-        request.setCharacterEncoding("utf-8");
-        JSONObject data = ReadJSONUtil.readJSONStr(request);
-        String Place=data.get("Palce").toString();
-        Conditions condition=new Conditions();
-        condition.eq("departrue",Place);
-        List<Fetchorder> fetchorders = fetchOrderService.listFetchorder(condition);
-        JSONObject jsonObject=new JSONObject();
-        Gson gson=new Gson();
-        jsonObject.put("status","1");
-        jsonObject.put("data",gson.toJson(fetchorders));
-        PrintWriter writer = response.getWriter();
-        writer.write(jsonObject.toString());
+        writer.write(result.toString());
         writer.flush();
     }
 
-    @RequestMapping(value = " acceptOrder", method = RequestMethod.POST)
-    public void  acceptOrder(HttpServletResponse response) throws Exception {
+    @RequestMapping(value = "enableFetchingOrder", method = RequestMethod.POST)
+    public void enableFetchingOrder(HttpServletResponse response) throws Exception
+    {
         request.setCharacterEncoding("utf-8");
         JSONObject data = ReadJSONUtil.readJSONStr(request);
-        String Order_Id=data.get("Order_Id").toString();
+
+        String Order_Id = data.get("Order_Id").toString();
+        String Prewait_Time = data.get("Prewait_Time").toString();
+
         Fetchorder fetchorder = fetchOrderService.findByid(Order_Id);
-        fetchorder.setRemark(3);
+        fetchorder.setPrewait_time(Integer.parseInt(Prewait_Time));
+        fetchorder.setStatus(0);
         fetchOrderService.updateFetchOrder(fetchorder);
-        JSONObject jsonObject=new JSONObject();
-        Gson gson=new Gson();
-        jsonObject.put("status","1");
-        jsonObject.put("data",null);
+
+        JSONObject result=new JSONObject();
+        result.put("status","1");
+        result.put("data","");
+        System.out.println(result.toString());
         PrintWriter writer = response.getWriter();
-        writer.write(jsonObject.toString());
+        writer.write(result.toString());
+        writer.flush();
+
+    }
+
+    @RequestMapping(value = "getFetchingPlaceOrder", method = RequestMethod.POST)
+    public void getFetchingPlaceOrder(HttpServletResponse response) throws Exception
+    {
+        request.setCharacterEncoding("utf-8");
+        JSONObject data = ReadJSONUtil.readJSONStr(request);
+
+        //String Place=data.get("Place").toString();
+        Conditions conditions=new Conditions();
+        conditions.in("departure_id","2","1");
+        List<Fetchorder> fetchorders = fetchOrderService.listFetchorder(conditions);
+
+        JSONArray temp=new JSONArray();
+        for(int i=0;i<fetchorders.size();i++)
+        {
+            JSONObject json=new JSONObject();
+            json.put("orderId",fetchorders.get(i).getId());
+            json.put("departure",fetchorders.get(i).getDeparture_id());
+            json.put("destination",fetchorders.get(i).getDestination_id());
+            json.put("receiveMan",fetchorders.get(i).getId());
+            json.put("weight",fetchorders.get(i).getWeight());
+            json.put("pickTime",fetchorders.get(i).getPick_time());
+            json.put("preWaitTime",fetchorders.get(i).getPrewait_time());
+            json.put("comment",fetchorders.get(i).getComment());
+            json.put("fee",fetchorders.get(i).getFee());
+            json.put("releaseTime",fetchorders.get(i).getRelease_time());
+            json.put("status",1);
+            json.put("fee",fetchorders.get(i).getFee());
+            json.put("state",fetchorders.get(i).getStatus());
+
+
+            temp.add(json);
+        }
+        JSONObject result=new JSONObject();
+        result.put("status","1");
+        result.put("data",temp);
+        System.out.println(result.toString());
+        PrintWriter writer = response.getWriter();
+        writer.write(result.toString());
         writer.flush();
     }
 }

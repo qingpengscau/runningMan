@@ -5,90 +5,83 @@ import scau.zxck.base.dao.annotation.Table;
 import scau.zxck.base.dao.entity.Unique;
 @Table(name = "fetch_order_info")
 public class Fetchorder extends Unique {
-    /*
-    *  `id` varchar(255) NOT NULL,
-  `release_man_id` varchar(50) NOT NULL,
-  `execute_man_id` varchar(50) DEFAULT NULL,
-  `receive_man_id` varchar(50) NOT NULL,
-  `release_time` varchar(20) NOT NULL,
-  `departure` varchar(50) NOT NULL,
-  `destination` varchar(50) NOT NULL,
-  `weight` double(5,0) DEFAULT NULL,
+   /*
+   * `id` varchar(255) NOT NULL,
+  `release_man_id` varchar(50) NOT NULL COMMENT '发布人id，与用户表主键绑定',
+  `execute_man_id` varchar(50) DEFAULT NULL COMMENT '执行人，与用户表主键绑定',
+  `release_time` varchar(20) NOT NULL COMMENT '订单发布时间',
+  `departure_id` varchar(50) NOT NULL COMMENT '起始地，从address表中选取',
+  `destination_id` varchar(50) NOT NULL COMMENT '目的地，从address表中选取',
+  `weight` double(5,0) DEFAULT NULL COMMENT '物品重量',
   `type` int(1) NOT NULL,
-  `prewait_time` int(5) DEFAULT NULL,
-  `express_company` varchar(20) DEFAULT NULL,
-  `order_start_time` varchar(20) DEFAULT NULL,
-  `order_finish_time` varchar(20) DEFAULT NULL,
-  `fee` double(10,0) NOT NULL,
-  `issue_descri` varchar(255) NOT NULL,
-  `status` int(1) NOT NULL,
-  `comment` varchar(50) DEFAULT NULL,
-  `remark` int(1) NOT NULL,*/
-    @Column(name = "release_man_id")
-    private String release_man_id;
-    @Column(name = "execute_man_id")
+  `prewait_time` int(5) DEFAULT NULL COMMENT '用户预计等待时间',
+  `order_start_time` varchar(20) DEFAULT NULL COMMENT '订单开始时间，从被接单开始算起',
+  `order_finish_time` varchar(20) DEFAULT NULL COMMENT '订单完成时间',
+  `fee` double(10,0) NOT NULL COMMENT '所需费用',
+  `status` int(1) NOT NULL COMMENT '用来标记该订单是否被完成，0仅发布未有人接单，1已被接单但未完成，2已完成',
+  `comment` varchar(50) DEFAULT NULL COMMENT '订单备注',*/
+   @Column(name="release_man_id")
+   private String release_man_id;
+
+    @Column(name="execute_man_id")
     private String execute_man_id;
-    @Column(name = "receive_man_id")
-    private String receive_man_id;
-    @Column(name = "release_time")
+
+    @Column(name="release_time")
     private String release_time;
-    @Column(name = "departure")
-    private String departure;
 
+    @Column(name="departure_id")
+    private String departure_id;
 
+    @Column(name="destination_id")
+    private String destination_id;
 
-    @Column(name = "destination")
-    private String destination;
-    @Column(name = "weight")
+    @Column(name="weight")
     private double weight;
-    @Column(name = "commondity")
-    private String commondity;
-    @Column(name = "commondity_picture")
-    private String commondity_picture;
-    @Column(name = "type")
+
+    @Column(name="type")
     private int type;
-    @Column(name = "prewait_time")
+
+    @Column(name="prewait_time")
     private int prewait_time;
-    @Column(name = "express_company")
-    private String express_company;
-    @Column(name = "order_start_time")
+
+    @Column(name="order_start_time")
     private String order_start_time;
-    @Column(name = "order_finish_time")
+
+    @Column(name="order_finish_time")
     private String order_finish_time;
 
-    @Column(name = "price")
-    private double price;
-
-    @Column(name = "pick_time")
-    private double pick_time;
-
-    @Column(name = "fee")
+    @Column(name="fee")
     private double fee;
-    @Column(name = "issue_descri")
-    private String issue_descri;
-    @Column(name = "status")
+
+    @Column(name="status")
+
     private int status;
-    @Column(name = "comment")
+
+    @Column(name="comment")
     private String comment;
-    @Column(name = "remark")
-    private int remark;
 
+    @Column(name="pick_time")
 
-    public String getCommondity() {
-        return commondity;
+    private String pick_time;
+
+    public int getStatus() {
+        return status;
     }
 
-    public void setCommondity(String commondity) {
-        this.commondity = commondity;
+    public void setStatus(int status) {
+        this.status = status;
     }
 
-    public String getCommondity_picture() {
-        return commondity_picture;
+
+
+    public String getPick_time() {
+        return pick_time;
     }
 
-    public void setCommondity_picture(String commondity_picture) {
-        this.commondity_picture = commondity_picture;
+    public void setPick_time(String pick_time) {
+        this.pick_time = pick_time;
     }
+
     public String getRelease_man_id() {
         return release_man_id;
     }
@@ -105,14 +98,6 @@ public class Fetchorder extends Unique {
         this.execute_man_id = execute_man_id;
     }
 
-    public String getReceive_man_id() {
-        return receive_man_id;
-    }
-
-    public void setReceive_man_id(String receive_man_id) {
-        this.receive_man_id = receive_man_id;
-    }
-
     public String getRelease_time() {
         return release_time;
     }
@@ -121,20 +106,20 @@ public class Fetchorder extends Unique {
         this.release_time = release_time;
     }
 
-    public String getDeparture() {
-        return departure;
+    public String getDeparture_id() {
+        return departure_id;
     }
 
-    public void setDeparture(String departure) {
-        this.departure = departure;
+    public void setDeparture_id(String departure_id) {
+        this.departure_id = departure_id;
     }
 
-    public String getDestination() {
-        return destination;
+    public String getDestination_id() {
+        return destination_id;
     }
 
-    public void setDestination(String destination) {
-        this.destination = destination;
+    public void setDestination_id(String destination_id) {
+        this.destination_id = destination_id;
     }
 
     public double getWeight() {
@@ -161,14 +146,6 @@ public class Fetchorder extends Unique {
         this.prewait_time = prewait_time;
     }
 
-    public String getExpress_company() {
-        return express_company;
-    }
-
-    public void setExpress_company(String express_company) {
-        this.express_company = express_company;
-    }
-
     public String getOrder_start_time() {
         return order_start_time;
     }
@@ -193,21 +170,7 @@ public class Fetchorder extends Unique {
         this.fee = fee;
     }
 
-    public String getIssue_descri() {
-        return issue_descri;
-    }
 
-    public void setIssue_descri(String issue_descri) {
-        this.issue_descri = issue_descri;
-    }
-
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
-    }
 
     public String getComment() {
         return comment;
@@ -217,11 +180,5 @@ public class Fetchorder extends Unique {
         this.comment = comment;
     }
 
-    public int getRemark() {
-        return remark;
-    }
 
-    public void setRemark(int remark) {
-        this.remark = remark;
-    }
 }

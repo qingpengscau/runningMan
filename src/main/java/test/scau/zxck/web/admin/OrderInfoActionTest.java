@@ -61,7 +61,7 @@ public class OrderInfoActionTest {
         //ParamObj paramObj=new ParamObj(true,"12345678","","1",""/*,200*/);
         /*String str=JSON.toJSON(paramObj).toString();
         System.out.println(str);*/
-        Fetchorder fetchorder=new Fetchorder();
+        /*Fetchorder fetchorder=new Fetchorder();
         fetchorder.setRelease_man_id("1");
 
         fetchorder.setReceive_man_id("1");
@@ -72,17 +72,17 @@ public class OrderInfoActionTest {
         fetchorder.setFee(20);
         fetchorder.setIssue_descri("henzhong");
         fetchorder.setStatus(9);
-        fetchorder.setRemark(0);
-        Gson gson=new Gson();
+        fetchorder.setRemark(0);*/
+        /*Gson gson=new Gson();
         String s = gson.toJson(fetchorder);
         //System.out.println(s);
         String name="{\"status\":\"0\"}";
         String password="guanshui";
         //System.out.println(gson.toJson(name));
-        System.out.println(s);
-        JsonObject returnData = new JsonParser().parse(name).getAsJsonObject();
+        System.out.println(s);*/
+       // JsonObject returnData = new JsonParser().parse(name).getAsJsonObject();
 
-      String responseString = mockMvc.perform( post("/addShoppingOrder").contentType(MediaType.APPLICATION_JSON_VALUE).content("")).andDo(print())
+      String responseString = mockMvc.perform( post("/getFetchingPlaceOrder").contentType(MediaType.APPLICATION_JSON_VALUE).content("")).andDo(print())
               .andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
     }
 }
