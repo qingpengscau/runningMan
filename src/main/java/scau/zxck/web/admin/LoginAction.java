@@ -36,23 +36,30 @@ public class LoginAction{
     private HttpSession session;
         @RequestMapping(value = "login",method =RequestMethod.POST )
         public void login(HttpServletResponse response) throws BaseException,IOException {
-            System.out.println(session.getAttribute("")+",,,,,,,,,,,,");
             BufferedReader br=request.getReader();
             String str,whoStr="";
             while((str=br.readLine())!=null){
                 whoStr+=str;
             }
+            System.out.println(whoStr);
             JSONObject data=JSON.parseObject(whoStr);
-        String name=data.get("User_Name").toString();
+        String name="";
+        if(data.get("User_Name")!=null)
+        name=data.get("User_Name").toString();
         String password=data.get("User_Password").toString();
-        String cell=data.get("User_Cell").toString();
+        String cell="";
+        if(data.get("User_Cell")!=null)
+        cell=data.get("User_Cell").toString();
+//            String cell=request.getParameter("User_Cell");
+//            String password=request.getParameter("User_Password");
+//            System.out.println(cell+"===================="+password);
         Conditions conditions=new Conditions();
         JSONObject temp=new JSONObject();
         JSONObject temp1=new JSONObject();
         String r="";
        try{
-           List<User> list=iUserService.listUser(conditions.eq("user_password",password).and().leftBracket()
-                   .eq("user_name",name).or().eq("user_cell",cell).rightBracket());
+           List<User> list=iUserService.listUser(conditions.eq("user_password",password).and().leftBracket().eq("user_name",name).or()
+                   .eq("user_cell",cell).rightBracket());
 //           System.out.print(conditions.eq("user_password",password).and().leftBracket()
 //                   .eq("user_name",name).or().eq("user_cell",cell).rightBracket().toWhereSQL());
            User user=list.get(0);
@@ -69,7 +76,6 @@ public class LoginAction{
            temp.put("status","0");
            temp.put("data","");
            r=temp.toJSONString();
-           e.printStackTrace();
        }
        finally {
            WriteJson.writeJson(response,r);
