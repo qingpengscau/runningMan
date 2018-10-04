@@ -31,7 +31,7 @@ public class ReceiverService implements IReceiverService {
     }
 
     @Override
-    public List<Receiver> getAddress(Conditions conditions ) throws BaseException {
+    public List<Receiver> listReceiver(Conditions conditions ) throws BaseException {
         return receiverDao.list(conditions);
     }
 }
