@@ -3,11 +3,8 @@ package scau.zxck.web.admin;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.google.gson.Gson;
-import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.converter.json.GsonBuilderUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -15,11 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import scau.zxck.base.dao.mybatis.Conditions;
 import scau.zxck.base.exception.BaseException;
-import scau.zxck.entity.market.Receiver;
+import scau.zxck.entity.market.Address;
 import scau.zxck.entity.market.User;
 import scau.zxck.service.market.IReceiverService;
 import scau.zxck.service.market.IUserService;
-import scau.zxck.serviceImpl.market.UserService;
 import scau.zxck.utils.WriteJson;
 
 import javax.servlet.http.HttpServletRequest;
@@ -54,22 +50,22 @@ public class DeliverAddressAction {
         JSONObject data=JSON.parseObject(whoStr);
         JSONObject temp=new JSONObject();
         String name = data.get("Name").toString();
-        String cell = data.get("cell").toString();
+        String cell = data.get("Cell").toString();
         String area = data.get("Area").toString();
-        String detail_area = data.get("Detail_Area").toString();
+        String address = data.get("Address").toString();
         String address_id = data.get("Address_Id").toString();
         String r = "";
         try {
-            Receiver receiver = new Receiver();
-            receiver.setDeliver_address(detail_area);
-            receiver.setReceiver_cell(cell);
-            receiver.setReceiver_name(name);
+            Address receiver = new Address();
+            receiver.setAddress(address);
+            receiver.setCell(cell);
+            receiver.setName(name);
             String id = session.getAttribute("id").toString();
             receiver.setUser_id(id);
             User user = userService.findOne(id);
             int sex = user.getUser_sex();
-            receiver.setReceiver_sex(sex);
-            receiver.setReceiver_area(area);
+            receiver.setSex(sex);
+            receiver.setArea(area);
             receiver.setId(address_id);
             receiverService.updateReceiver(receiver);
             temp.put("status","1");
@@ -95,21 +91,22 @@ public class DeliverAddressAction {
         JSONObject data=JSON.parseObject(whoStr);
         JSONObject temp=new JSONObject();
         String name = data.get("Name").toString();
-        String cell = data.get("cell").toString();
+        String cell = data.get("Cell").toString();
         String area = data.get("Area").toString();
-        String detail_area = data.get("Detail_Area").toString();
+        String address = data.get("Address").toString();
+        String address_id = data.get("Address_Id").toString();
         String r = "";
         try {
-            Receiver receiver = new Receiver();
-            receiver.setDeliver_address(detail_area);
-            receiver.setReceiver_cell(cell);
-            receiver.setReceiver_name(name);
+            Address receiver = new Address();
+            receiver.setAddress(address);
+            receiver.setCell(cell);
+            receiver.setName(name);
             String id = session.getAttribute("id").toString();
             receiver.setUser_id(id);
             User user = userService.findOne(id);
             int sex = user.getUser_sex();
-            receiver.setReceiver_sex(sex);
-            receiver.setReceiver_area(area);
+            receiver.setSex(sex);
+            receiver.setArea(area);
             receiverService.addReceiver(receiver);
             temp.put("status","1");
             temp.put("data",receiver.getId());
@@ -162,15 +159,15 @@ public class DeliverAddressAction {
         try {
             String id = session.getAttribute("id").toString();
             Conditions conditions = new Conditions();
-            List<Receiver> addresses = receiverService.listReceiver(conditions.eq("user_id",id));
+            List<Address> addresses = receiverService.listReceiver(conditions.eq("user_id",id));
             JSONArray s=new JSONArray();
-            for(Receiver address: addresses){
+            for(Address address: addresses){
                 JSONObject tp=new JSONObject();
                 tp.put("addressId",address.getId());
-                tp.put("name",address.getReceiver_name());
-                tp.put("cell",address.getReceiver_cell());
-                tp.put("area",address.getReceiver_area());
-                tp.put("detailArea",address.getDeliver_address());
+                tp.put("name",address.getName());
+                tp.put("cell",address.getCell());
+                tp.put("address",address.getArea());
+                tp.put("area",address.getAddress());
                 s.add(tp);
             }
             temp.put("status","1");
