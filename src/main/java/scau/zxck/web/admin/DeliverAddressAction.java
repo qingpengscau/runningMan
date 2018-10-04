@@ -60,7 +60,7 @@ public class DeliverAddressAction {
             receiver.setAddress(address);
             receiver.setCell(cell);
             receiver.setName(name);
-            String id = session.getAttribute("id").toString();
+            String id = session.getAttribute("User_Id").toString();
             receiver.setUser_id(id);
             User user = userService.findOne(id);
             int sex = user.getUser_sex();
@@ -94,14 +94,13 @@ public class DeliverAddressAction {
         String cell = data.get("Cell").toString();
         String area = data.get("Area").toString();
         String address = data.get("Address").toString();
-        String address_id = data.get("Address_Id").toString();
         String r = "";
         try {
             Address receiver = new Address();
             receiver.setAddress(address);
             receiver.setCell(cell);
             receiver.setName(name);
-            String id = session.getAttribute("id").toString();
+            String id = session.getAttribute("User_Id").toString();
             receiver.setUser_id(id);
             User user = userService.findOne(id);
             int sex = user.getUser_sex();
@@ -122,6 +121,11 @@ public class DeliverAddressAction {
     }
     @RequestMapping(value = "deleteDeliverAddress",method =RequestMethod.POST )
     public void deleteDeliverAddress(HttpServletResponse response) throws BaseException,IOException {
+        System.out.println("aifiaihofuahu");
+        System.out.println("aifiaihofuahu"); System.out.println("aifiaihofuahu");
+        System.out.println("aifiaihofuahu");
+        System.out.println("aifiaihofuahu");
+
         BufferedReader br=request.getReader();
         String str,whoStr="";
         while((str=br.readLine())!=null){
@@ -157,7 +161,7 @@ public class DeliverAddressAction {
 
         String r = "";
         try {
-            String id = session.getAttribute("id").toString();
+            String id = session.getAttribute("User_Id").toString();
             Conditions conditions = new Conditions();
             List<Address> addresses = receiverService.listReceiver(conditions.eq("user_id",id));
             JSONArray s=new JSONArray();
