@@ -59,16 +59,18 @@ public class RegisterAction {
         secure.setSecure_question(data.get("Secure_Question1").toString());
         secure.setSecure_answer(data.get("Secure_Answer1").toString());
 
-        iSecureService.addSecure(secure);
 
-        secure.setSecure_question(data.get("Secure_Question2").toString());
-        secure.setSecure_answer(data.get("Secure_Answer2").toString());
+
+        Secure secure1=new Secure();
+        secure1.setSecure_question(data.get("Secure_Question2").toString());
+        secure1.setSecure_answer(data.get("Secure_Answer2").toString());
+        secure1.setUser_id(userId);
 
         JSONObject temp=new JSONObject();
-        JSONObject temp1=new JSONObject();
         String r="";
         try {
             iSecureService.addSecure(secure);
+            iSecureService.addSecure(secure1);
             temp.put("status","1");
             temp.put("data","");
         }catch (Exception e){
@@ -79,7 +81,7 @@ public class RegisterAction {
             WriteJson.writeJson(response,r);
         //return value
     }
-    @RequestMapping(value = "valiateAccount",method = RequestMethod.POST)
+    @RequestMapping(value = "validateAccount",method = RequestMethod.POST)
     public void valiateAccount (HttpServletResponse response)throws IOException,BaseException{
             JSONObject data=ReadJson.readJson(request);
             String cell=data.get("User_Cell").toString();
@@ -87,15 +89,17 @@ public class RegisterAction {
             List<User>list=iUserService.listUser(conditions.eq("user_cell",cell));
         JSONObject temp=new JSONObject();
         String r="";
-            if(list!=null){
+            try{
+                User user=list.get(0);//说明存在该用户
                 temp.put("status","0");
                 temp.put("data","");
 
-            }else{
-                temp.put("status","1");
+            }catch (Exception e){
+                temp.put("status","1");//说明没有该用户
                 temp.put("data","");
             }
             r=temp.toJSONString();
+            System.out.println(r);
             WriteJson.writeJson(response,r);
     }
 }

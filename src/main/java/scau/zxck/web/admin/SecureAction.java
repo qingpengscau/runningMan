@@ -57,7 +57,7 @@ public class SecureAction {
                 temp1.put("answer1",secure0.getSecure_answer());
                 temp1.put("question2",secure1.getSecure_question());
                 temp1.put("answer2",secure1.getSecure_answer());
-
+                temp1.put("password",list.get(0).getUser_password()); 
                 temp.put("data",temp1);
 
                 r=temp.toJSONString();

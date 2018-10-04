@@ -75,7 +75,8 @@
 			<mvc:exclude-mapping path="/login"/>
 			<mvc:exclude-mapping path="/getSecureQuestion"/>
 			<mvc:exclude-mapping path="/register"/>
-			<mvc:exclude-mapping path="/valiateAccount"/>
+			<mvc:exclude-mapping path="/validateAccount"/>
+			<mvc:exclude-mapping path="/updatePassword"/>
 			<!--  原来：<mvc:mapping path="/admin/**"/>  -->
 			<bean class="scau.zxck.web.interceptor.Tokenterceptor"/>
 		</mvc:interceptor>
