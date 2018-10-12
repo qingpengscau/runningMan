@@ -35,14 +35,13 @@ public class Fetchorder extends Unique {
     @Column(name="destination_id")
     private String destination_id;
 
-    @Column(name="weight")
-    private double weight;
+    @Column(name="type_weight")
+    private String type_weight;
 
-    @Column(name="type")
-    private int type;
+
 
     @Column(name="prewait_time")
-    private int prewait_time;
+    private String prewait_time;
 
     @Column(name="order_start_time")
     private String order_start_time;
@@ -122,27 +121,20 @@ public class Fetchorder extends Unique {
         this.destination_id = destination_id;
     }
 
-    public double getWeight() {
-        return weight;
+
+    public String getType_weight() {
+        return type_weight;
     }
 
-    public void setWeight(double weight) {
-        this.weight = weight;
+    public void setType_weight(String type_weight) {
+        this.type_weight = type_weight;
     }
 
-    public int getType() {
-        return type;
-    }
-
-    public void setType(int type) {
-        this.type = type;
-    }
-
-    public int getPrewait_time() {
+    public String getPrewait_time() {
         return prewait_time;
     }
 
-    public void setPrewait_time(int prewait_time) {
+    public void setPrewait_time(String prewait_time) {
         this.prewait_time = prewait_time;
     }
 

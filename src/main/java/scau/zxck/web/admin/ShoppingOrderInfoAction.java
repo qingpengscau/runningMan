@@ -51,19 +51,19 @@ public class ShoppingOrderInfoAction {
      String Shopping_Address = data.get("Shopping_Address").toString();
      String Destination_id = data.get("Destination_Id").toString();
      String Pick_time = data.get("Pick_time").toString();
-     String Prewait_Time = data.get("Prewait_Time").toString();
+     long Prewait_Time = Long.parseLong(data.get("Prewait_Time").toString());
      String Price = data.get("Price").toString();
      String Comment = data.get("Comment").toString();
      String Fee = data.get("Fee").toString();
      String User_Id=session.getAttribute("User_Id").toString();
 
        ShoppingOrder shoppingOrder=new ShoppingOrder();
-       SimpleDateFormat sf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+       SimpleDateFormat sf=new SimpleDateFormat("MM-dd HH:mm");
        shoppingOrder.setCommodity(Commodity);
        shoppingOrder.setShopping_address(Shopping_Address);
        shoppingOrder.setDestination_id(Destination_id);
        shoppingOrder.setPick_time(Pick_time);
-       shoppingOrder.setPrewait_time(Integer.parseInt(Prewait_Time));
+       shoppingOrder.setPrewait_time(sf.format(new Date(Prewait_Time*60*1000+new Date().getTime())));
        shoppingOrder.setPrice(Double.parseDouble(Price));
        shoppingOrder.setComment(Comment);
        shoppingOrder.setFee(Double.parseDouble(Fee));
@@ -135,13 +135,17 @@ public class ShoppingOrderInfoAction {
         Conditions conditions=new Conditions();
         ShoppingOrder shoppingOrder = shoppingOrderService.findByid(Order_Id);
         JSONObject result=new JSONObject();
-        if(shoppingOrder.getStatus()>0)
+        if(shoppingOrder.getStatus()==0)
         {
-           result.put("isAccepted","1");
+           result.put("isAccepted","0");
         }
-        else
+        else if(shoppingOrder.getStatus()==1)
         {
-            result.put("isAccepted","0");
+            result.put("isAccepted","1");
+        }
+        else if(shoppingOrder.getStatus()==3)
+        {
+            result.put("isAccepted","2");
         }
         result.put("status","1");
 
@@ -173,7 +177,7 @@ public class ShoppingOrderInfoAction {
         shoppingOrder.setShopping_address(Shopping_Address);
         shoppingOrder.setDestination_id(Destination_id);
         shoppingOrder.setPick_time(Pick_time);
-        shoppingOrder.setPrewait_time(Integer.parseInt(Prewait_Time));
+      //  shoppingOrder.setPrewait_time(Integer.parseInt(Prewait_Time));
         shoppingOrder.setPrice(Double.parseDouble(Price));
         shoppingOrder.setComment(Comment);
         shoppingOrder.setFee(Double.parseDouble(Fee));
@@ -216,10 +220,11 @@ public class ShoppingOrderInfoAction {
         JSONObject data = ReadJSONUtil.readJSONStr(request);
 
         String Order_Id = data.get("Order_Id").toString();
-        String Prewait_Time = data.get("Prewait_Time").toString();
+        long Prewait_Time = Long.parseLong(data.get("Prewait_Time").toString());
 
         ShoppingOrder shoppingOrder = shoppingOrderService.findByid(Order_Id);
-        shoppingOrder.setPrewait_time(Integer.parseInt(Prewait_Time));
+        SimpleDateFormat sf=new SimpleDateFormat("MM-dd HH:mm");
+        shoppingOrder.setPrewait_time(sf.format(new Date(Prewait_Time*60*1000+new Date().getTime())));
         shoppingOrder.setStatus(0);
         shoppingOrderService.updateShoppingOrder(shoppingOrder);
 
@@ -351,6 +356,25 @@ public class ShoppingOrderInfoAction {
         writer.write(result.toString());
         writer.flush();
     }
+    @RequestMapping(value = "finishShopphingOrder", method = RequestMethod.POST)
+    public void finishShopphingOrder(HttpServletResponse response) throws Exception
+    {
+        request.setCharacterEncoding("utf-8");
+        JSONObject data = ReadJSONUtil.readJSONStr(request);
 
+        String Order_Id = data.get("Order_Id").toString();
+        ShoppingOrder shoppingOrder = shoppingOrderService.findByid(Order_Id);
+        shoppingOrder.setStatus(2);
+        shoppingOrderService.updateShoppingOrder(shoppingOrder);
+
+        JSONObject result=new JSONObject();
+        result.put("status","1");
+        result.put("data","");
+        System.out.println(result.toString());
+        PrintWriter writer = response.getWriter();
+        writer.write(result.toString());
+        writer.flush();
+
+    }
 
 }

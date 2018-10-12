@@ -60,20 +60,19 @@ public class FetchOrderInfoAction {
      String Departure_id = data.get("Departure_Id").toString();
      String Destination_id = data.get("Destination_Id").toString();
      String Pick_time = data.get("Pick_time").toString();
-     String Prewait_Time = data.get("Prewait_Time").toString();
-     String Type = data.get("Type").toString();
-     String Weight = data.get("Weight").toString();
+     long Prewait_Time = Long.parseLong(data.get("Prewait_Time").toString());
+
+     String Type_Weight = data.get("Type_Weight").toString();
      String Comment = data.get("Comment").toString();
      String Fee = data.get("Fee").toString();
 
        Fetchorder fetchorder=new Fetchorder();
-       SimpleDateFormat sf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+       SimpleDateFormat sf=new SimpleDateFormat("MM-dd HH:mm");
        fetchorder.setDeparture_id(Departure_id);
        fetchorder.setDestination_id(Destination_id);
        fetchorder.setPick_time(Pick_time);
-       fetchorder.setPrewait_time(Integer.parseInt(Prewait_Time));
-       fetchorder.setType(Integer.parseInt(Type));
-       fetchorder.setWeight(Double.parseDouble(Weight));
+       fetchorder.setPrewait_time(sf.format(new Date(Prewait_Time*60*1000+new Date().getTime())));
+       fetchorder.setType_weight(Type_Weight);
        fetchorder.setComment(Comment);
        fetchorder.setFee(Double.parseDouble(Fee));
        fetchorder.setRelease_man_id(String.valueOf(session.getAttribute("User_Id")));
@@ -112,7 +111,7 @@ public class FetchOrderInfoAction {
 
 
          json.put("receiveMan",address.getName());
-         json.put("weight",fetchorders.get(i).getWeight());
+         json.put("typeWeight",fetchorders.get(i).getType_weight());
          json.put("pickTime",fetchorders.get(i).getPick_time());
          json.put("preWaitTime",fetchorders.get(i).getPrewait_time());
          json.put("comment",fetchorders.get(i).getComment());
@@ -143,13 +142,17 @@ public class FetchOrderInfoAction {
         Conditions conditions=new Conditions();
         Fetchorder fetchorder = fetchOrderService.findByid(Order_Id);
         JSONObject result=new JSONObject();
-        if(fetchorder.getStatus()>0)
+        if(fetchorder.getStatus()==0)
         {
-           result.put("isAccepted","1");
+           result.put("isAccepted","0");
         }
-        else
+        else if(fetchorder.getStatus()==1)
         {
-            result.put("isAccepted","0");
+            result.put("isAccepted","1");
+        }
+        else if(fetchorder.getStatus()==3)
+        {
+            result.put("isAccepted","2");
         }
         result.put("status","1");
 
@@ -169,7 +172,7 @@ public class FetchOrderInfoAction {
         String Pick_time = data.get("Pick_time").toString();
         String Prewait_Time = data.get("Prewait_Time").toString();
         String Type = data.get("Type").toString();
-        String Weight = data.get("Weight").toString();
+        String Type_Weight = data.get("Type_Weigh").toString();
         String Comment = data.get("Comment").toString();
         String Fee = data.get("Fee").toString();
 
@@ -178,9 +181,8 @@ public class FetchOrderInfoAction {
         fetchorder.setDeparture_id(Departure_id);
         fetchorder.setDestination_id(Destination_id);
         fetchorder.setPick_time(Pick_time);
-        fetchorder.setPrewait_time(Integer.parseInt(Prewait_Time));
-        fetchorder.setType(Integer.parseInt(Type));
-        fetchorder.setWeight(Double.parseDouble(Weight));
+        fetchorder.setPrewait_time("");
+        fetchorder.setType_weight(Type_Weight);
         fetchorder.setComment(Comment);
         fetchorder.setFee(Double.parseDouble(Fee));
         fetchOrderService.updateFetchOrder(fetchorder);
@@ -220,10 +222,10 @@ public class FetchOrderInfoAction {
         JSONObject data = ReadJSONUtil.readJSONStr(request);
 
         String Order_Id = data.get("Order_Id").toString();
-        String Prewait_Time = data.get("Prewait_Time").toString();
-
+        long Prewait_Time = Long.parseLong(data.get("Prewait_Time").toString());
+        SimpleDateFormat sf=new SimpleDateFormat("MM-dd HH:mm");
         Fetchorder fetchorder = fetchOrderService.findByid(Order_Id);
-        fetchorder.setPrewait_time(Integer.parseInt(Prewait_Time));
+        fetchorder.setPrewait_time(sf.format(new Date(Prewait_Time*60*1000+new Date().getTime())));
         fetchorder.setStatus(0);
         fetchOrderService.updateFetchOrder(fetchorder);
 
@@ -264,7 +266,7 @@ public class FetchOrderInfoAction {
             json.put("destination",address.getAddress());
 
             json.put("receiveMan",address.getName());
-            json.put("weight",fetchorders.get(i).getWeight());
+            json.put("typeWeight",fetchorders.get(i).getType_weight());
             json.put("pickTime",fetchorders.get(i).getPick_time());
             json.put("preWaitTime",fetchorders.get(i).getPrewait_time());
             json.put("comment",fetchorders.get(i).getComment());
@@ -328,7 +330,7 @@ public class FetchOrderInfoAction {
             json.put("destination",address.getAddress());
 
             json.put("receiveMan",address.getName());
-            json.put("weight",fetchorders.get(i).getWeight());
+            json.put("typeWeight",fetchorders.get(i).getType_weight());
             json.put("pickTime",fetchorders.get(i).getPick_time());
             json.put("preWaitTime",fetchorders.get(i).getPrewait_time());
             json.put("comment",fetchorders.get(i).getComment());
@@ -349,6 +351,25 @@ public class FetchOrderInfoAction {
         writer.write(result.toString());
         writer.flush();
     }
+    @RequestMapping(value = "finishFetchingOrder", method = RequestMethod.POST)
+    public void finishFetchingOrder(HttpServletResponse response) throws Exception
+    {
+        request.setCharacterEncoding("utf-8");
+        JSONObject data = ReadJSONUtil.readJSONStr(request);
 
+        String Order_Id = data.get("Order_Id").toString();
+        Fetchorder fetchorder = fetchOrderService.findByid(Order_Id);
+        fetchorder.setStatus(2);
+        fetchOrderService.updateFetchOrder(fetchorder);
+
+        JSONObject result=new JSONObject();
+        result.put("status","1");
+        result.put("data","");
+        System.out.println(result.toString());
+        PrintWriter writer = response.getWriter();
+        writer.write(result.toString());
+        writer.flush();
+
+    }
 
 }

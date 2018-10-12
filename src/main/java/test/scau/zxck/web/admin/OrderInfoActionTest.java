@@ -14,6 +14,9 @@ import org.springframework.web.context.WebApplicationContext;
 import scau.zxck.web.admin.FetchOrderInfoAction;
 import scau.zxck.web.admin.ShoppingOrderInfoAction;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -71,8 +74,16 @@ public class OrderInfoActionTest {
         //System.out.println(gson.toJson(name));
         System.out.println(s);*/
        // JsonObject returnData = new JsonParser().parse(name).getAsJsonObject();
+        SimpleDateFormat sf=new SimpleDateFormat("MM-dd HH:mm");
+        Date date1=new Date();
+        String date=sf.format(date1);
 
-      String responseString = mockMvc.perform( post("/getShoppingPlaceOrder").contentType(MediaType.APPLICATION_JSON_VALUE).content("")).andDo(print())
-              .andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
+        System.out.println(date);
+        System.out.println(date1.getTime());
+        long time = date1.getTime()+5*60*1000;
+        Date date2=new Date(time);
+        System.out.println(sf.format(date2));
+     // String responseString = mockMvc.perform( post("/getShoppingPlaceOrder").contentType(MediaType.APPLICATION_JSON_VALUE).content("")).andDo(print())
+        //      .andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
     }
 }

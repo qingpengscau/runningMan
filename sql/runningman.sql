@@ -47,10 +47,10 @@ CREATE TABLE `fetch_order_info` (
   `release_time` varchar(20) NOT NULL COMMENT '订单发布时间',
   `departure_id` varchar(50) NOT NULL COMMENT '起始地，从address表中选取',
   `destination_id` varchar(50) NOT NULL COMMENT '目的地，从address表中选取',
-  `weight` double(5,0) DEFAULT NULL COMMENT '物品重量',
+  `type_weight` varchar(50) DEFAULT NULL COMMENT '物品重量',
   `pick_time` varchar(50) NOT NULL,
-  `type` int(1) NOT NULL,
-  `prewait_time` varchar(20) NOT NULL COMMENT '用户预计等待时间',
+
+  `type_prewait_time` varchar(20) NOT NULL COMMENT '用户预计等待时间',
   `order_start_time` varchar(20) DEFAULT NULL COMMENT '订单开始时间，从被接单开始算起',
   `order_finish_time` varchar(20) DEFAULT NULL COMMENT '订单完成时间',
   `fee` double(10,0) NOT NULL COMMENT '所需费用',
