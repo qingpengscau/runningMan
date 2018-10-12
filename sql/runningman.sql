@@ -1,22 +1,22 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : guanshuai
-Source Server Version : 50559
-Source Host           : 127.0.0.1:3306
+Source Server         : qingpeng
+Source Server Version : 50560
+Source Host           : localhost:3306
 Source Database       : runningman
 
 Target Server Type    : MYSQL
-Target Server Version : 50559
+Target Server Version : 50560
 File Encoding         : 65001
 
-Date: 2018-10-03 19:45:04
+Date: 2018-10-12 15:38:53
 */
 
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
--- Table structure for address_info
+-- Table structure for `address_info`
 -- ----------------------------
 DROP TABLE IF EXISTS `address_info`;
 CREATE TABLE `address_info` (
@@ -25,7 +25,8 @@ CREATE TABLE `address_info` (
   `name` varchar(20) NOT NULL,
   `address` varchar(50) NOT NULL,
   `cell` varchar(20) NOT NULL,
-  `sex` int(1) NOT NULL,
+  `sex` int(1) DEFAULT NULL,
+  `area` varchar(50) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_User` (`user_id`),
   CONSTRAINT `FK_User` FOREIGN KEY (`user_id`) REFERENCES `user_info` (`id`)
@@ -36,7 +37,7 @@ CREATE TABLE `address_info` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for fetch_order_info
+-- Table structure for `fetch_order_info`
 -- ----------------------------
 DROP TABLE IF EXISTS `fetch_order_info`;
 CREATE TABLE `fetch_order_info` (
@@ -49,7 +50,7 @@ CREATE TABLE `fetch_order_info` (
   `weight` double(5,0) DEFAULT NULL COMMENT '物品重量',
   `pick_time` varchar(50) NOT NULL,
   `type` int(1) NOT NULL,
-  `prewait_time` int(5) NOT NULL COMMENT '用户预计等待时间',
+  `prewait_time` varchar(20) NOT NULL COMMENT '用户预计等待时间',
   `order_start_time` varchar(20) DEFAULT NULL COMMENT '订单开始时间，从被接单开始算起',
   `order_finish_time` varchar(20) DEFAULT NULL COMMENT '订单完成时间',
   `fee` double(10,0) NOT NULL COMMENT '所需费用',
@@ -71,7 +72,7 @@ CREATE TABLE `fetch_order_info` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for secure_info
+-- Table structure for `secure_info`
 -- ----------------------------
 DROP TABLE IF EXISTS `secure_info`;
 CREATE TABLE `secure_info` (
@@ -90,7 +91,7 @@ CREATE TABLE `secure_info` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for shopping_order_info
+-- Table structure for `shopping_order_info`
 -- ----------------------------
 DROP TABLE IF EXISTS `shopping_order_info`;
 CREATE TABLE `shopping_order_info` (
@@ -113,9 +114,9 @@ CREATE TABLE `shopping_order_info` (
   KEY `FK_shopping_Departure_id` (`destination_id`) USING BTREE,
   KEY `FK_shopping_Excute_man` (`execute_man_id`) USING BTREE,
   KEY `FK_Shopping_Releaseman` (`release_man_id`),
-  CONSTRAINT `FK_Shopping_Releaseman` FOREIGN KEY (`release_man_id`) REFERENCES `user_info` (`id`),
   CONSTRAINT `FK_Shopping_Departure_id` FOREIGN KEY (`destination_id`) REFERENCES `address_info` (`id`),
-  CONSTRAINT `FK_Shopping_Excute_man` FOREIGN KEY (`execute_man_id`) REFERENCES `user_info` (`id`)
+  CONSTRAINT `FK_Shopping_Excute_man` FOREIGN KEY (`execute_man_id`) REFERENCES `user_info` (`id`),
+  CONSTRAINT `FK_Shopping_Releaseman` FOREIGN KEY (`release_man_id`) REFERENCES `user_info` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -123,7 +124,7 @@ CREATE TABLE `shopping_order_info` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for user_info
+-- Table structure for `user_info`
 -- ----------------------------
 DROP TABLE IF EXISTS `user_info`;
 CREATE TABLE `user_info` (
