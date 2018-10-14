@@ -14,6 +14,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import scau.zxck.base.dao.mybatis.Conditions;
 import scau.zxck.base.exception.BaseException;
 import scau.zxck.entity.market.User;
@@ -38,31 +41,37 @@ public class UploadPictureAction {
     private HttpServletRequest request;
     @Autowired
     private HttpSession session;
-        @RequestMapping(value = "uploadPicture",method =RequestMethod.POST )
-        public void login(HttpServletResponse response) throws BaseException, IOException, FileUploadException {
-            String temp = session.getServletContext().getRealPath("temp");
-            DiskFileItemFactory factory = new DiskFileItemFactory(1024*1024, new File(temp));
-            ServletFileUpload upload = new ServletFileUpload(factory);
-            upload.setHeaderEncoding("UTF-8");
-            boolean multipartContent = upload.isMultipartContent(request);//判断表单是否是文件上传的表单
-            if (multipartContent){
-                List<FileItem> parseRequest = upload.parseRequest(request);
-                if (parseRequest!=null){
-                    for (FileItem item : parseRequest){
-                        String fileName = item.getName();
-                        //获得上传文件的内容
-                        InputStream in = item.getInputStream();
-                        String path_store = session.getServletContext().getRealPath("upload");
-                        OutputStream out = new FileOutputStream(path_store+"/"+fileName);
-                        IOUtils.copy(in,out);
-                        in.close();
-                        out.close();
-                        item.delete();
-                    }
+    @RequestMapping(value = "/uploadHeadPicture", method = RequestMethod.POST)
+    @ResponseBody
+    public void uploadHeadPicture(HttpServletResponse response,@RequestParam("head") MultipartFile[] partFiles, String data) throws IOException {
+        JSONObject temp = new JSONObject();
+        String r = "";
+        String id = session.getAttribute("User_Id").toString();
+        try {
+            if (null != partFiles && partFiles.length > 0)
+            {
+                for (int i = 0; i < partFiles.length; i++)
+                {
+                    MultipartFile partFile = partFiles[i];
+                    //服务器图片保存的路径
+                    String imgPath = session.getServletContext().getRealPath("head");
+                    File imgFile = new File(imgPath);
+                    //将图片写到指定的文件下
+                    partFile.transferTo(imgFile);
                 }
+                temp.put("status","1");
+                temp.put("data",null);
+                r=temp.toJSONString();
             }
 
-
-            WriteJson.writeJson(response,temp);
+        }catch (Exception e){
+            temp.put("status","0");
+            temp.put("data","");
+            r=temp.toJSONString();
+            e.printStackTrace();
+        }finally {
+            WriteJson.writeJson(response,r);
         }
+    }
+
 }
