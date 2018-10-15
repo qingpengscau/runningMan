@@ -9,6 +9,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import scau.zxck.base.dao.mybatis.Conditions;
 import scau.zxck.entity.market.Address;
 
@@ -25,6 +27,7 @@ import scau.zxck.utils.TimeUtil;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.File;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -51,6 +54,9 @@ public class ShoppingOrderInfoAction {
     public void addShoppingOrder(HttpServletResponse response) throws Exception {
 
      request.setCharacterEncoding("utf-8");
+
+
+
      JSONObject data = ReadJSONUtil.readJSONStr(request);
 
      String Commodity = data.get("Commodity").toString();
@@ -76,13 +82,21 @@ public class ShoppingOrderInfoAction {
        shoppingOrder.setRelease_time(sf.format(new Date()));
        shoppingOrder.setRelease_man_id(User_Id);
 
-       shoppingOrderService.addShoppingOrder(shoppingOrder);
+    final String order_id = shoppingOrderService.addShoppingOrder(shoppingOrder);
 
 
-     JSONObject jsonObject=new JSONObject();
+    JSONObject jsonObject=new JSONObject();
      jsonObject.put("status","1");
      jsonObject.put("data","");
      String s =jsonObject.toJSONString();
+
+
+    MultipartHttpServletRequest mRequest = (MultipartHttpServletRequest)request;
+    MultipartFile file = mRequest.getFile("shop");
+    String imgPath = session.getServletContext().getRealPath("static/images")+"/"+order_id+".jpg";
+    File imgFile = new File(imgPath);
+    //将图片写到指定的文件下
+    file.transferTo(imgFile);
      PrintWriter writer = response.getWriter();
      writer.write(s);
      writer.flush();
