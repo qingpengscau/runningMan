@@ -38,7 +38,7 @@ public class ShoppingOrder extends Unique {
     private String destination_id;
 
     @Column(name="prewait_time")
-    private int prewait_time;
+    private String prewait_time;
 
     @Column(name="order_start_time")
     private String order_start_time;
@@ -52,9 +52,7 @@ public class ShoppingOrder extends Unique {
     @Column(name="fee")
     private double fee;
 
-    @Column(name="status")
 
-    private int status;
 
     @Column(name="comment")
     private String comment;
@@ -65,6 +63,16 @@ public class ShoppingOrder extends Unique {
 
     @Column(name=" commodity")
     private String  commodity;
+    @Column(name = "state")
+    private int state;
+
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
+    }
 
     public String getRelease_man_id() {
         return release_man_id;
@@ -106,16 +114,17 @@ public class ShoppingOrder extends Unique {
         this.destination_id = destination_id;
     }
 
-    public int getPrewait_time() {
-        return prewait_time;
-    }
-
-    public void setPrewait_time(int prewait_time) {
-        this.prewait_time = prewait_time;
-    }
 
     public String getOrder_start_time() {
         return order_start_time;
+    }
+
+    public String getPrewait_time() {
+        return prewait_time;
+    }
+
+    public void setPrewait_time(String prewait_time) {
+        this.prewait_time = prewait_time;
     }
 
     public void setOrder_start_time(String order_start_time) {
@@ -146,13 +155,6 @@ public class ShoppingOrder extends Unique {
         this.fee = fee;
     }
 
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
-    }
 
     public String getComment() {
         return comment;

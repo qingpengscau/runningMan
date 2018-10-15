@@ -39,12 +39,7 @@
 	<!-- 默认注册 DefaultAnnotationHandleMapping以及AnnotionMethodHandleAdapter -->
 	<mvc:annotation-driven conversion-service="myConversionService">
 		<mvc:message-converters>
-			<bean id="multipartResolver"
-				  class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-				<property name="defaultEncoding" value="UTF-8" />
-				<!-- 指定所上传文件的总大小,单位字节。注意maxUploadSize属性的限制不是针对单个文件，而是所有文件的容量之和 20M,可根据情况调整 -->
-				<property name="maxUploadSize" value="20971520" />
-			</bean>
+
 
 			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
 				<property name="supportedMediaTypes">
@@ -72,20 +67,21 @@
 		<!--拦截指定请求-->
 		<!--<mvc:interceptor>-->
 		<!--<mvc:mapping path="/admin/**"/>-->
-		<!--		<mvc:mapping path="/**"/>
-                &lt;!&ndash;  原来：<mvc:mapping path="/admin/**"/>  &ndash;&gt;
-                <bean class="scau.zxck.web.interceptor.LogInterceptor"/>
-            </mvc:interceptor>-->
+				<!--<mvc:mapping path="/**"/>-->
+                  <!--原来：<mvc:mapping path="/admin/**"/>-->
+                <!--<bean class="scau.zxck.web.interceptor.LogInterceptor"/>-->
+		<!--</mvc:interceptor>-->
 		<mvc:interceptor>
-			<!--<mvc:mapping path="/admin/**"/>-->
-			<mvc:mapping path="/**"/>
-			<mvc:exclude-mapping path="/login"/>
-			<mvc:exclude-mapping path="/getSecureQuestion"/>
-			<mvc:exclude-mapping path="/register"/>
-			<mvc:exclude-mapping path="/validateAccount"/>
-			<mvc:exclude-mapping path="/updatePassword"/>
-			<!--  原来：<mvc:mapping path="/admin/**"/>  -->
-			<bean class="scau.zxck.web.interceptor.Tokenterceptor"/>
+		<!--<mvc:mapping path="/admin/**"/>-->
+		<mvc:mapping path="/**"/>
+		<mvc:exclude-mapping path="/login"/>
+		<mvc:exclude-mapping path="/getSecureQuestion"/>
+		<mvc:exclude-mapping path="/register"/>
+		<mvc:exclude-mapping path="/validateAccount"/>
+		<mvc:exclude-mapping path="/updatePassword"/>
+			<mvc:exclude-mapping path="/static/**"/>
+		<!--  原来：<mvc:mapping path="/admin/**"/>  -->
+		<bean class="scau.zxck.web.interceptor.Tokenterceptor"/>
 		</mvc:interceptor>
 	</mvc:interceptors>
 

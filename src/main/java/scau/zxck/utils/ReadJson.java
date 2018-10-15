@@ -14,6 +14,7 @@ public class ReadJson {
         while((str=br.readLine())!=null){
             whoStr+=str;
         }
+        System.out.println(whoStr);
         JSONObject data=JSONObject.parseObject(whoStr);
         System.out.println(request.toString());
         return data;

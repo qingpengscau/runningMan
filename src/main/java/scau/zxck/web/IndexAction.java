@@ -20,18 +20,5 @@ import java.util.List;
 @RequestMapping("/")
 public class IndexAction {
 
-    @Autowired
-    private IUnionStaffService unionStaffService;
-    /**
-     * 首頁
-     * @return
-     * @throws BaseException
-     */
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String Index(Model model) throws BaseException{
-        List<UnionStaff> unionStaffList = unionStaffService.listUnionStaff();
-        model.addAttribute("unionStaffList", unionStaffList);
-        return "index";
-    }
 
 }

@@ -55,6 +55,7 @@ public class UserInfoAction {
     @RequestMapping(value = "getUserInfo",method = RequestMethod.POST)
     public void getUserInfo(HttpServletResponse response)throws BaseException, java.io.IOException{
             JSONObject data=ReadJson.readJson(request);
+            System.out.println("==================kai==================");
             Conditions conditions=new Conditions();
             List<User>list=iUserService.listUser(conditions.eq("id",session.getAttribute("User_Id")));
             JSONObject temp=new JSONObject();
@@ -84,7 +85,8 @@ public class UserInfoAction {
     public void updateUserInfo(HttpServletResponse response)throws BaseException, java.io.IOException{
         JSONObject data=ReadJson.readJson(request);
         Conditions conditions=new Conditions();
-        List<User> list=iUserService.listUser(conditions.eq("id",session.getAttribute("user_id")));
+        List<User> list=iUserService.listUser(conditions.eq("id",session.getAttribute("User_Id")));
+        System.out.println(session.getAttribute("User_Id"));
         JSONObject temp=new JSONObject();
         if(list!=null){
             try{

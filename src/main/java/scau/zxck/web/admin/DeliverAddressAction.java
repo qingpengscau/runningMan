@@ -48,6 +48,7 @@ public class DeliverAddressAction {
             whoStr+=str;
         }
         JSONObject data=JSON.parseObject(whoStr);
+        System.out.println(data.toJSONString());
         JSONObject temp=new JSONObject();
         String name = data.get("Name").toString();
         String cell = data.get("Cell").toString();
@@ -60,7 +61,7 @@ public class DeliverAddressAction {
             receiver.setAddress(address);
             receiver.setCell(cell);
             receiver.setName(name);
-            String id = session.getAttribute("id").toString();
+            String id = session.getAttribute("User_Id").toString();
             receiver.setUser_id(id);
             User user = userService.findOne(id);
             int sex = user.getUser_sex();
@@ -69,7 +70,10 @@ public class DeliverAddressAction {
             receiver.setId(address_id);
             receiverService.updateReceiver(receiver);
             temp.put("status","1");
-            temp.put("data",receiver.getId());
+            JSONObject temp1=new JSONObject();
+            temp1.put("addressId",address_id);
+            temp.put("data",temp1);
+            System.out.println(temp.toJSONString());
             r=temp.toJSONString();
         }catch (Exception e){
             temp.put("status","0");
@@ -94,14 +98,14 @@ public class DeliverAddressAction {
         String cell = data.get("Cell").toString();
         String area = data.get("Area").toString();
         String address = data.get("Address").toString();
-        String address_id = data.get("Address_Id").toString();
+       // String address_id = data.get("Address_Id").toString();
         String r = "";
         try {
             Address receiver = new Address();
             receiver.setAddress(address);
             receiver.setCell(cell);
             receiver.setName(name);
-            String id = session.getAttribute("id").toString();
+            String id = session.getAttribute("User_Id").toString();
             receiver.setUser_id(id);
             User user = userService.findOne(id);
             int sex = user.getUser_sex();
@@ -109,8 +113,11 @@ public class DeliverAddressAction {
             receiver.setArea(area);
             receiverService.addReceiver(receiver);
             temp.put("status","1");
-            temp.put("data",receiver.getId());
+            JSONObject temp1=new JSONObject();
+            temp1.put("addressId",receiver.getId());
+            temp.put("data",temp1);
             r=temp.toJSONString();
+            System.out.println(r);
         }catch (Exception e){
             temp.put("status","0");
             temp.put("data","");
@@ -157,7 +164,7 @@ public class DeliverAddressAction {
 
         String r = "";
         try {
-            String id = session.getAttribute("id").toString();
+            String id = session.getAttribute("User_Id").toString();
             Conditions conditions = new Conditions();
             List<Address> addresses = receiverService.listReceiver(conditions.eq("user_id",id));
             JSONArray s=new JSONArray();
@@ -166,8 +173,8 @@ public class DeliverAddressAction {
                 tp.put("addressId",address.getId());
                 tp.put("name",address.getName());
                 tp.put("cell",address.getCell());
-                tp.put("address",address.getArea());
-                tp.put("area",address.getAddress());
+                tp.put("address",address.getAddress());
+                tp.put("area",address.getArea());
                 s.add(tp);
             }
             temp.put("status","1");

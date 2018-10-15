@@ -57,7 +57,7 @@ public class LogInterceptor implements HandlerInterceptor{/*extends HandlerInter
 //        System.out.println(host);
 //        response.sendRedirect(host+"login");
 //        System.out.println("shoud't be here");
-       return false;
+       return true;
     }
 
     @Override

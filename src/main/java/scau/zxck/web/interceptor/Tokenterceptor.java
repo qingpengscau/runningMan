@@ -24,11 +24,11 @@ public class Tokenterceptor implements HandlerInterceptor{/*extends HandlerInter
     HttpSession session;
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object obj) throws Exception {
-        System.out.println("============拦截器开始处理请求===============");
-        if(request.getHeader("AuthToken")!=null){
+       System.out.println("============拦截器开始处理请求===============");
+        if(request.getHeader("Token")!=null){
             JwtUtil jwtUtil=new JwtUtil();
             try{
-             Claims claims = jwtUtil.parseJWT(request.getHeader("AuthToken"));
+             Claims claims = jwtUtil.parseJWT(request.getHeader("Token"));
                 String id=claims.getId();
 
                 session.setAttribute("User_Id",id);
@@ -42,6 +42,7 @@ public class Tokenterceptor implements HandlerInterceptor{/*extends HandlerInter
             WriteJson.writeJson(response,r);
         }
         return false;
+      // return  false;
     }
 
     @Override

@@ -29,7 +29,7 @@ public class User extends Unique {
     @Column(name="iamge_path")
     private String iamge_path;
     @Column(name="gold")
-    private int gold;
+    private double gold;
     @Column(name="image_path")
     private String image_path;
     @Column(name="user_cell")
@@ -71,11 +71,11 @@ public class User extends Unique {
         this.location = location;
     }
 
-    public int getGold() {
+    public double getGold() {
         return gold;
     }
 
-    public void setGold(int gold) {
+    public void setGold(double gold) {
         this.gold = gold;
     }
 

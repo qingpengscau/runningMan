@@ -67,7 +67,7 @@ public class LoginAction{
            temp.put("status","1");
 
            JwtUtil jwtUtil=new JwtUtil();
-           temp1.put("token",jwtUtil.createJWT(user.getId(),18000000));//5 hour
+           temp1.put("token",jwtUtil.createJWT(user.getId(),18000000*100));//5 00hour
            temp.put("data",temp1);
 
            r=temp.toJSONString();
