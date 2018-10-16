@@ -9,9 +9,12 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import scau.zxck.base.dao.mybatis.Conditions;
+import scau.zxck.base.exception.BaseException;
 import scau.zxck.entity.market.Address;
 
 import scau.zxck.entity.market.ShoppingOrder;
@@ -23,11 +26,13 @@ import scau.zxck.service.market.IUserService;
 import scau.zxck.serviceImpl.market.UserService;
 import scau.zxck.utils.ReadJSONUtil;
 import scau.zxck.utils.TimeUtil;
+import scau.zxck.utils.WriteJson;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.File;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -50,175 +55,210 @@ public class ShoppingOrderInfoAction {
     private HttpSession session;
     @Autowired
     private IUserService iUserService;
-@RequestMapping(value = "addShoppingOrder", method = RequestMethod.POST)
-    public void addShoppingOrder(HttpServletResponse response) throws Exception {
 
-     request.setCharacterEncoding("utf-8");
-
-
-
-     JSONObject data = ReadJSONUtil.readJSONStr(request);
-
-     String Commodity = data.get("Commodity").toString();
-     String Shopping_Address = data.get("Shopping_Address").toString();
-     String Destination_id = data.get("Destination_Id").toString();
-     String Pick_time = data.get("Pick_Time").toString();
-     String Prewait_Time =data.get("Prewait_Time").toString();
-     String Price = data.get("Price").toString();
-     String Comment = data.get("Comment").toString();
-     String Fee = data.get("Fee").toString();
-     String User_Id=session.getAttribute("User_Id").toString();
-
-       ShoppingOrder shoppingOrder=new ShoppingOrder();
-       SimpleDateFormat sf=new SimpleDateFormat("MM-dd HH:mm");
-       shoppingOrder.setCommodity(Commodity);
-       shoppingOrder.setShopping_address(Shopping_Address);
-       shoppingOrder.setDestination_id(Destination_id);
-       shoppingOrder.setPick_time(Pick_time);
-       shoppingOrder.setPrewait_time(Prewait_Time);
-       shoppingOrder.setPrice(Double.parseDouble(Price));
-       shoppingOrder.setComment(Comment);
-       shoppingOrder.setFee(Double.parseDouble(Fee));
-       shoppingOrder.setRelease_time(sf.format(new Date()));
-       shoppingOrder.setRelease_man_id(User_Id);
-
-    final String order_id = shoppingOrderService.addShoppingOrder(shoppingOrder);
+    @RequestMapping(value = "/addShoppingOrder", method = RequestMethod.POST)
+    @ResponseBody
+    public void addShoppingOrder(HttpServletResponse response, @RequestParam("head") MultipartFile[] partFiles, String data) throws IOException, BaseException {
+        JSONObject temp = new JSONObject();
+        String r = "";
+        try {
+        String Commodity = request.getParameter("Commodity").toString();
+        String Shopping_Address = request.getParameter("Shopping_Address").toString();
+        String Destination_id = request.getParameter("Destination_Id").toString();
+        String Pick_time =request.getParameter("Pick_Time").toString();
+        String Prewait_Time =request.getParameter("Prewait_Time").toString();
+        String Price = request.getParameter("Price").toString();
+        String Comment = request.getParameter("Comment").toString();
+        String Fee = request.getParameter("Fee").toString();
+        String User_Id=session.getAttribute("User_Id").toString();
+        String id = session.getAttribute("User_Id").toString();
+        ShoppingOrder shoppingOrder=new ShoppingOrder();
+        SimpleDateFormat sf=new SimpleDateFormat("MM-dd HH:mm");
+        shoppingOrder.setCommodity(Commodity);
+        shoppingOrder.setShopping_address(Shopping_Address);
+        shoppingOrder.setDestination_id(Destination_id);
+        shoppingOrder.setPick_time(Pick_time);
+        shoppingOrder.setPrewait_time(Prewait_Time);
+        shoppingOrder.setPrice(Double.parseDouble(Price));
+        shoppingOrder.setComment(Comment);
+        shoppingOrder.setFee(Double.parseDouble(Fee));
+        shoppingOrder.setRelease_time(sf.format(new Date()));
+        shoppingOrder.setRelease_man_id(User_Id);
+        final String order_id = shoppingOrderService.addShoppingOrder(shoppingOrder);
 
 
-    JSONObject jsonObject=new JSONObject();
-     jsonObject.put("status","1");
-     jsonObject.put("data","");
-     String s =jsonObject.toJSONString();
+
+            if (null != partFiles && partFiles.length > 0)
+            {
+                for (int i = 0; i < partFiles.length; i++)
+                {
+                    MultipartFile partFile = partFiles[i];
+                    //服务器图片保存的路径
+                    String imgPath = session.getServletContext().getRealPath("static/images")+"/"+order_id+".jpg";
+                    File imgFile = new File(imgPath);
+                    //将图片写到指定的文件下
+                    partFile.transferTo(imgFile);
+                }
+                temp.put("status","1");
+                temp.put("data",null);
+                r=temp.toJSONString();
+            }
 
 
-    MultipartHttpServletRequest mRequest = (MultipartHttpServletRequest)request;
-    MultipartFile file = mRequest.getFile("shop");
-    String imgPath = session.getServletContext().getRealPath("static/images")+"/"+order_id+".jpg";
-    File imgFile = new File(imgPath);
-    //将图片写到指定的文件下
-    file.transferTo(imgFile);
-     PrintWriter writer = response.getWriter();
-     writer.write(s);
-     writer.flush();
+        }catch (Exception e){
+            temp.put("status","0");
+            temp.put("data","");
+            r=temp.toJSONString();
+            e.printStackTrace();
+        }finally {
+            WriteJson.writeJson(response,r);
+        }
+    }
 
- }
 
     @RequestMapping(value = "getAllShoppingOrder", method = RequestMethod.POST)
     public void getAllShoppingingOrder(HttpServletResponse response) throws Exception {
-        request.setCharacterEncoding("utf-8");
-        JSONObject data = ReadJSONUtil.readJSONStr(request);
-       String User_Id=session.getAttribute("User_Id").toString();
-        Conditions conditions=new Conditions();
-        List<ShoppingOrder> shoppingorders = shoppingOrderService.listShoppingOrder(conditions.eq("release_man_id",User_Id));
-        JSONArray temp=new JSONArray();
-        Address address=null;
-        for(int i=0;i<shoppingorders.size();i++)
-     {
-         JSONObject json=new JSONObject();
-         json.put("orderId",shoppingorders.get(i).getId());
-         json.put("departure",shoppingorders.get(i).getShopping_address());
-         address = addressService.findByid(shoppingorders.get(i).getDestination_id());
-         json.put("destination",address.getArea()+"  "+address.getAddress());
+        try {
+            request.setCharacterEncoding("utf-8");
+            JSONObject data = ReadJSONUtil.readJSONStr(request);
+            String User_Id = session.getAttribute("User_Id").toString();
+            Conditions conditions = new Conditions();
+            List<ShoppingOrder> shoppingorders = shoppingOrderService.listShoppingOrder(conditions.eq("release_man_id", User_Id));
+            JSONArray temp = new JSONArray();
+            Address address = null;
+            for (int i = 0; i < shoppingorders.size(); i++) {
+                JSONObject json = new JSONObject();
+                json.put("orderId", shoppingorders.get(i).getId());
+                json.put("departure", shoppingorders.get(i).getShopping_address());
+                address = addressService.findByid(shoppingorders.get(i).getDestination_id());
+                json.put("destination", address.getArea() + "  " + address.getAddress());
+                json.put("clientCell", address.getCell());
 
+                json.put("receiveMan", address.getName());
+                json.put("commodity", shoppingorders.get(i).getCommodity());
+                json.put("pickTime", shoppingorders.get(i).getPick_time());
+                json.put("preWaitTime", shoppingorders.get(i).getPrewait_time());
+                json.put("comment", shoppingorders.get(i).getComment());
+                json.put("fee", shoppingorders.get(i).getFee());
+                json.put("releaseTime", shoppingorders.get(i).getRelease_time());
+                json.put("status", 0);
+                json.put("price", shoppingorders.get(i).getPrice());
+                json.put("fee", shoppingorders.get(i).getFee());
+                json.put("picturePath", "/static/images/" + shoppingorders.get(i).getId() + ".jpg");
+                Date now = new Date();
+                SimpleDateFormat nowTime = new SimpleDateFormat("MM-dd HH-mm");
+                String currentTime = nowTime.format(now);
+                if (shoppingorders.get(i).getState() != 3) {
+                    if (TimeUtil.isFirstTimeEarly(shoppingorders.get(i).getPrewait_time(), currentTime)) {
+                        shoppingorders.get(i).setState(3);
+                        shoppingOrderService.updateShoppingOrder(shoppingorders.get(i));
+                    }
+                }
+                json.put("state", shoppingorders.get(i).getState());
+                temp.add(json);
+            }
+            JSONObject result = new JSONObject();
+            result.put("status", "1");
+            result.put("data", temp);
 
-         json.put("receiveMan",address.getName());
-         json.put("commodity",shoppingorders.get(i).getCommodity());
-         json.put("pickTime",shoppingorders.get(i).getPick_time());
-         json.put("preWaitTime",shoppingorders.get(i).getPrewait_time());
-         json.put("comment",shoppingorders.get(i).getComment());
-         json.put("fee",shoppingorders.get(i).getFee());
-         json.put("releaseTime",shoppingorders.get(i).getRelease_time());
-         json.put("status",0);
-         json.put("price",shoppingorders.get(i).getPrice());
-         json.put("fee",shoppingorders.get(i).getFee());
-         Date now = new Date();
-         SimpleDateFormat nowTime = new SimpleDateFormat("MM-dd HH-mm");
-         String currentTime = nowTime.format(now);
-         if(shoppingorders.get(i).getState()!=3) {
-             if (TimeUtil.isFirstTimeEarly(shoppingorders.get(i).getPrewait_time(), currentTime)) {
-                 shoppingorders.get(i).setState(3);
-                 shoppingOrderService.updateShoppingOrder(shoppingorders.get(i));
-             }
-         }
-         json.put("state",shoppingorders.get(i).getState());
-         temp.add(json);
-     }
-     JSONObject result=new JSONObject();
-        result.put("status","1");
-        result.put("data",temp);
+            PrintWriter writer = response.getWriter();
+            writer.write(result.toString());
+            writer.flush();
+        }
+        catch (Exception e)
+        {
+            JSONObject jsonObject=new JSONObject();
+            jsonObject.put("status","0");
+            jsonObject.put("data","");
+            WriteJson.writeJson(response,jsonObject.toJSONString());
+        }
 
-        PrintWriter writer = response.getWriter();
-        writer.write(result.toString());
-        writer.flush();
     }
 
     @RequestMapping(value = "isShoppingOrderAccepted", method = RequestMethod.POST)
     public void isShoppingOrderAccepted(HttpServletResponse response) throws Exception
     {
-        request.setCharacterEncoding("utf-8");
-        JSONObject data = ReadJSONUtil.readJSONStr(request);
-        String Order_Id = data.get("Order_Id").toString();
-        Conditions conditions=new Conditions();
-        ShoppingOrder shoppingOrder = shoppingOrderService.findByid(Order_Id);
-        JSONObject result=new JSONObject();
-        JSONObject temp=new JSONObject();
         try {
-            if (shoppingOrder.getState() == 0) {
-                result.put("isAccepted", "0");
-            } else if (shoppingOrder.getState() == 1) {
-                result.put("isAccepted", "1");
-            } else if (shoppingOrder.getState() == 2) {
-                result.put("isAccepted", "2");
+            request.setCharacterEncoding("utf-8");
+            JSONObject data = ReadJSONUtil.readJSONStr(request);
+            String Order_Id = data.get("Order_Id").toString();
+            Conditions conditions = new Conditions();
+            ShoppingOrder shoppingOrder = shoppingOrderService.findByid(Order_Id);
+            JSONObject result = new JSONObject();
+            JSONObject temp = new JSONObject();
+            try {
+                if (shoppingOrder.getState() == 0) {
+                    result.put("isAccepted", "0");
+                } else if (shoppingOrder.getState() == 1) {
+                    result.put("isAccepted", "1");
+                } else if (shoppingOrder.getState() == 2) {
+                    result.put("isAccepted", "2");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                result.put("isAccepted", 3);
             }
-        }catch (Exception e){
-            e.printStackTrace();
-            result.put("isAccepted",3);
+            temp.put("status", "1");
+            temp.put("data", result);
+            PrintWriter writer = response.getWriter();
+            writer.write(temp.toString());
+            writer.flush();
         }
-        temp.put("status","1");
-        temp.put("data",result);
-        PrintWriter writer = response.getWriter();
-        writer.write(temp.toString());
-        writer.flush();
+        catch (Exception e)
+        {
+            JSONObject jsonObject=new JSONObject();
+            jsonObject.put("status","0");
+            jsonObject.put("data","");
+            WriteJson.writeJson(response,jsonObject.toJSONString());
+        }
     }
 
     @RequestMapping(value = "updateShoppingOrder", method = RequestMethod.POST)
     public void updateShoppingOrder(HttpServletResponse response) throws Exception
     {
-        request.setCharacterEncoding("utf-8");
-        JSONObject data = ReadJSONUtil.readJSONStr(request);
+        try {
+            request.setCharacterEncoding("utf-8");
+            JSONObject data = ReadJSONUtil.readJSONStr(request);
 
-        String Order_Id = data.get("Order_Id").toString();
-        String Commodity = data.get("Commodity").toString();
-        String Shopping_Address = data.get("Shopping_Address").toString();
-        String Destination_id = data.get("Destination_Id").toString();
-        String Pick_time = data.get("Pick_time").toString();
-        String Prewait_Time = data.get("Prewait_Time").toString();
-        String Price = data.get("Price").toString();
-        String Comment = data.get("Comment").toString();
-        String Fee = data.get("Fee").toString();
+            String Order_Id = data.get("Order_Id").toString();
+            String Commodity = data.get("Commodity").toString();
+            String Shopping_Address = data.get("Shopping_Address").toString();
+            String Destination_id = data.get("Destination_Id").toString();
+            String Pick_time = data.get("Pick_time").toString();
+            String Prewait_Time = data.get("Prewait_Time").toString();
+            String Price = data.get("Price").toString();
+            String Comment = data.get("Comment").toString();
+            String Fee = data.get("Fee").toString();
 
-        ShoppingOrder shoppingOrder = shoppingOrderService.findByid(Order_Id);
+            ShoppingOrder shoppingOrder = shoppingOrderService.findByid(Order_Id);
 
-        SimpleDateFormat sf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        shoppingOrder.setCommodity(Commodity);
-        shoppingOrder.setShopping_address(Shopping_Address);
-        shoppingOrder.setDestination_id(Destination_id);
-        shoppingOrder.setPick_time(Pick_time);
-      //  shoppingOrder.setPrewait_time(Integer.parseInt(Prewait_Time));
-        shoppingOrder.setPrice(Double.parseDouble(Price));
-        shoppingOrder.setComment(Comment);
-        shoppingOrder.setFee(Double.parseDouble(Fee));
+            SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            shoppingOrder.setCommodity(Commodity);
+            shoppingOrder.setShopping_address(Shopping_Address);
+            shoppingOrder.setDestination_id(Destination_id);
+            shoppingOrder.setPick_time(Pick_time);
+            //  shoppingOrder.setPrewait_time(Integer.parseInt(Prewait_Time));
+            shoppingOrder.setPrice(Double.parseDouble(Price));
+            shoppingOrder.setComment(Comment);
+            shoppingOrder.setFee(Double.parseDouble(Fee));
 
 
-        shoppingOrderService.updateShoppingOrder(shoppingOrder);
-        JSONObject result=new JSONObject();
-        result.put("status","1");
-        result.put("data","");
-        System.out.println(result.toString());
-        PrintWriter writer = response.getWriter();
-        writer.write(result.toString());
-        writer.flush();
-
+            shoppingOrderService.updateShoppingOrder(shoppingOrder);
+            JSONObject result = new JSONObject();
+            result.put("status", "1");
+            result.put("data", "");
+            System.out.println(result.toString());
+            PrintWriter writer = response.getWriter();
+            writer.write(result.toString());
+            writer.flush();
+        }
+        catch (Exception e)
+        {
+            JSONObject jsonObject=new JSONObject();
+            jsonObject.put("status","0");
+            jsonObject.put("data","");
+            WriteJson.writeJson(response,jsonObject.toJSONString());
+        }
 
 
     }
@@ -226,197 +266,250 @@ public class ShoppingOrderInfoAction {
     @RequestMapping(value = "deleteShoppingOrder", method = RequestMethod.POST)
     public void deleteFetchingOrder(HttpServletResponse response) throws Exception
     {
-        request.setCharacterEncoding("utf-8");
-        JSONObject data = ReadJSONUtil.readJSONStr(request);
-        JSONObject result = new JSONObject();
         try {
-            String Order_Id = data.get("Order_Id").toString();
-            shoppingOrderService.deleteShoppingOrder(Order_Id);
-            result.put("data", "");
-            result.put("status", "1");
-        }catch (Exception e){
-            result.put("data","");
-            result.put("status","0");
+            request.setCharacterEncoding("utf-8");
+            JSONObject data = ReadJSONUtil.readJSONStr(request);
+            JSONObject result = new JSONObject();
+            try {
+                String Order_Id = data.get("Order_Id").toString();
+                shoppingOrderService.deleteShoppingOrder(Order_Id);
+                result.put("data", "");
+                result.put("status", "1");
+            } catch (Exception e) {
+                result.put("data", "");
+                result.put("status", "0");
+            }
+            PrintWriter writer = response.getWriter();
+            writer.write(result.toString());
+            writer.flush();
         }
-        PrintWriter writer = response.getWriter();
-        writer.write(result.toString());
-        writer.flush();
+        catch (Exception e)
+        {
+            JSONObject jsonObject=new JSONObject();
+            jsonObject.put("status","0");
+            jsonObject.put("data","");
+            WriteJson.writeJson(response,jsonObject.toJSONString());
+        }
     }
 
     @RequestMapping(value = "enableShoppingOrder", method = RequestMethod.POST)
     public void enableShoppingOrder(HttpServletResponse response) throws Exception
     {
-        request.setCharacterEncoding("utf-8");
-        JSONObject data = ReadJSONUtil.readJSONStr(request);
+        try {
+            request.setCharacterEncoding("utf-8");
+            JSONObject data = ReadJSONUtil.readJSONStr(request);
 
-        String Order_Id = data.get("Order_Id").toString();
-        long Prewait_Time = Long.parseLong(data.get("Prewait_Time").toString());
+            String Order_Id = data.get("Order_Id").toString();
+            long Prewait_Time = Long.parseLong(data.get("Prewait_Time").toString());
 
-        ShoppingOrder shoppingOrder = shoppingOrderService.findByid(Order_Id);
-        SimpleDateFormat sf=new SimpleDateFormat("MM-dd HH:mm");
-        shoppingOrder.setPrewait_time(sf.format(new Date(Prewait_Time*60*1000+new Date().getTime())));
-        shoppingOrder.setState(0);
-        shoppingOrderService.updateShoppingOrder(shoppingOrder);
+            ShoppingOrder shoppingOrder = shoppingOrderService.findByid(Order_Id);
+            SimpleDateFormat sf = new SimpleDateFormat("MM-dd HH:mm");
+            shoppingOrder.setPrewait_time(sf.format(new Date(Prewait_Time * 60 * 1000 + new Date().getTime())));
+            shoppingOrder.setState(0);
+            shoppingOrderService.updateShoppingOrder(shoppingOrder);
 
-        JSONObject result=new JSONObject();
-        result.put("status","1");
-        result.put("data","");
-        System.out.println(result.toString());
-        PrintWriter writer = response.getWriter();
-        writer.write(result.toString());
-        writer.flush();
+            JSONObject result = new JSONObject();
+            result.put("status", "1");
+            result.put("data", "");
+            System.out.println(result.toString());
+            PrintWriter writer = response.getWriter();
+            writer.write(result.toString());
+            writer.flush();
+        }
+        catch (Exception e)
+        {
+            JSONObject jsonObject=new JSONObject();
+            jsonObject.put("status","0");
+            jsonObject.put("data","");
+            WriteJson.writeJson(response,jsonObject.toJSONString());
+        }
 
     }
 
     @RequestMapping(value = "getShoppingPlaceOrder", method = RequestMethod.POST)
     public void getShoppingPlaceOrder(HttpServletResponse response) throws Exception
     {
-        request.setCharacterEncoding("utf-8");
-        JSONObject data = ReadJSONUtil.readJSONStr(request);
+        try {
+            request.setCharacterEncoding("utf-8");
+            JSONObject data = ReadJSONUtil.readJSONStr(request);
 
-        String place=data.get("Place").toString();
-        Conditions conditions=new Conditions();
-        List<ShoppingOrder> shoppingorders =shoppingOrderService.listShoppingOrder(conditions.eq("state",0));
-        Conditions conditions1=new Conditions();
-        List<Address>addressList=addressService.listReceiver(conditions1.eq("area",place));
-        System.out.println(place);
-        List<String>address_ids=new ArrayList<String>();
-        for(int i=0;i<addressList.size();i++){
-            address_ids.add(addressList.get(i).getId());
-        }
-        JSONArray temp=new JSONArray();
-        Address address=null;
-        for(ShoppingOrder e:shoppingorders){
-            System.out.println(e.getDestination_id()+"111111111");
-            for(String w:address_ids){
-                System.out.println(w);
-                if(e.getDestination_id().equals(w)){
-                    JSONObject json=new JSONObject();
-                    json.put("orderId",e.getId());
-                    json.put("departure",e.getShopping_address());
-                    address = addressService.findByid(w);
-                    json.put("destination",address.getArea()+"  "+address.getAddress());
+            String place = data.get("Place").toString();
+            Conditions conditions = new Conditions();
+            List<ShoppingOrder> shoppingorders = shoppingOrderService.listShoppingOrder(conditions.eq("state", 0));
+            Conditions conditions1 = new Conditions();
+            List<Address> addressList = addressService.listReceiver(conditions1.eq("area", place));
+            System.out.println(place);
+            List<String> address_ids = new ArrayList<String>();
+            for (int i = 0; i < addressList.size(); i++) {
+                address_ids.add(addressList.get(i).getId());
+            }
+            JSONArray temp = new JSONArray();
+            Address address = null;
+            for (ShoppingOrder e : shoppingorders) {
+                System.out.println(e.getDestination_id() + "111111111");
+                for (String w : address_ids) {
+                    System.out.println(w);
+                    if (e.getDestination_id().equals(w)) {
+                        JSONObject json = new JSONObject();
+                        json.put("orderId", e.getId());
+                        json.put("departure", e.getShopping_address());
+                        address = addressService.findByid(w);
+                        json.put("destination", address.getArea() + "  " + address.getAddress());
+                        json.put("clientCell", address.getCell());
 
-
-                    json.put("receiveMan",address.getName());
-                    json.put("commodity",e.getCommodity());
-                    json.put("pickTime",e.getPick_time());
-                    json.put("preWaitTime",e.getPrewait_time());
-                    json.put("comment",e.getComment());
-                    json.put("fee",e.getFee());
-                    json.put("releaseTime",e.getRelease_time());
-                    json.put("status",0);
-                    json.put("price",e.getPrice());
-                    json.put("fee",e.getFee());
-                    json.put("state",e.getState());
-                    temp.add(json);
+                        json.put("receiveMan", address.getName());
+                        json.put("commodity", e.getCommodity());
+                        json.put("pickTime", e.getPick_time());
+                        json.put("preWaitTime", e.getPrewait_time());
+                        json.put("comment", e.getComment());
+                        json.put("fee", e.getFee());
+                        json.put("releaseTime", e.getRelease_time());
+                        json.put("status", 0);
+                        json.put("price", e.getPrice());
+                        json.put("fee", e.getFee());
+                        json.put("picturePath", "/static/images/" + e.getId() + ".jpg");
+                        json.put("state", e.getState());
+                        temp.add(json);
+                    }
                 }
             }
-        }
 
-        JSONObject result=new JSONObject();
-        result.put("status","1");
-        result.put("data",temp);
-        System.out.println(result.toString());
-        PrintWriter writer = response.getWriter();
-        writer.write(result.toString());
-        writer.flush();
+            JSONObject result = new JSONObject();
+            result.put("status", "1");
+            result.put("data", temp);
+            System.out.println(result.toString());
+            PrintWriter writer = response.getWriter();
+            writer.write(result.toString());
+            writer.flush();
+        }
+        catch (Exception e)
+        {
+            JSONObject jsonObject=new JSONObject();
+            jsonObject.put("status","0");
+            jsonObject.put("data","");
+            WriteJson.writeJson(response,jsonObject.toJSONString());
+        }
     }
 
     @RequestMapping(value = "acceptShoppingOrder", method = RequestMethod.POST)
     public void acceptFetchingOrder(HttpServletResponse response) throws Exception
     {
-        request.setCharacterEncoding("utf-8");
-        JSONObject data = ReadJSONUtil.readJSONStr(request);
+        try {
+            request.setCharacterEncoding("utf-8");
+            JSONObject data = ReadJSONUtil.readJSONStr(request);
 
-        String Order_Id = data.get("Order_Id").toString();
-        ShoppingOrder shoppingOrder = shoppingOrderService.findByid(Order_Id);
-        shoppingOrder.setState(1);
-        shoppingOrder.setExecute_man_id(session.getAttribute("User_Id").toString());
-        shoppingOrderService.updateShoppingOrder(shoppingOrder);
+            String Order_Id = data.get("Order_Id").toString();
+            ShoppingOrder shoppingOrder = shoppingOrderService.findByid(Order_Id);
+            shoppingOrder.setState(1);
+            shoppingOrder.setExecute_man_id(session.getAttribute("User_Id").toString());
+            shoppingOrderService.updateShoppingOrder(shoppingOrder);
 
-        JSONObject result=new JSONObject();
-        result.put("status","1");
-        result.put("data","");
-        System.out.println(result.toString());
-        PrintWriter writer = response.getWriter();
-        writer.write(result.toString());
-        writer.flush();
+            JSONObject result = new JSONObject();
+            result.put("status", "1");
+            result.put("data", "");
+            System.out.println(result.toString());
+            PrintWriter writer = response.getWriter();
+            writer.write(result.toString());
+            writer.flush();
+        }
+        catch (Exception e)
+        {
+            JSONObject jsonObject=new JSONObject();
+            jsonObject.put("status","0");
+            jsonObject.put("data","");
+            WriteJson.writeJson(response,jsonObject.toJSONString());
+        }
 
     }
 
     @RequestMapping(value = "getShoppingAcceptedOrder", method = RequestMethod.POST)
     public void getShoppingingAcceptedOrder(HttpServletResponse response) throws Exception
     {
+try {
+    request.setCharacterEncoding("utf-8");
+    JSONObject data = ReadJSONUtil.readJSONStr(request);
+    String User_Id = session.getAttribute("User_Id").toString();
+    Conditions conditions = new Conditions();
 
-        request.setCharacterEncoding("utf-8");
-        JSONObject data = ReadJSONUtil.readJSONStr(request);
-        String User_Id =session.getAttribute("User_Id").toString();
-        Conditions conditions=new Conditions();
+    conditions.eq("execute_man_id", User_Id);
+    List<ShoppingOrder> shoppingorders = shoppingOrderService.listShoppingOrder(conditions);
+    JSONArray temp = new JSONArray();
+    Address address = null;
+    for (int i = 0; i < shoppingorders.size(); i++) {
+        JSONObject json = new JSONObject();
+        json.put("orderId", shoppingorders.get(i).getId());
+        json.put("departure", shoppingorders.get(i).getShopping_address());
+        address = addressService.findByid(shoppingorders.get(i).getDestination_id());
+        json.put("destination", address.getArea() + "  " + address.getAddress());
+        json.put("clientCell", address.getCell());
 
-        conditions.eq("execute_man_id",User_Id);
-        List<ShoppingOrder> shoppingorders = shoppingOrderService.listShoppingOrder(conditions);
-        JSONArray temp=new JSONArray();
-        Address address=null;
-        for(int i=0;i<shoppingorders.size();i++)
-        {
-            JSONObject json=new JSONObject();
-            json.put("orderId",shoppingorders.get(i).getId());
-            json.put("departure",shoppingorders.get(i).getShopping_address());
-            address = addressService.findByid(shoppingorders.get(i).getDestination_id());
-            json.put("destination",address.getArea()+"  "+address.getAddress());
-
-
-            json.put("receiveMan",address.getName());
-            json.put("commodity",shoppingorders.get(i).getCommodity());
-            json.put("pickTime",shoppingorders.get(i).getPick_time());
-            json.put("preWaitTime",shoppingorders.get(i).getPrewait_time());
-            json.put("comment",shoppingorders.get(i).getComment());
-            json.put("fee",shoppingorders.get(i).getFee());
-            json.put("releaseTime",shoppingorders.get(i).getRelease_time());
-            json.put("status",0);
-            json.put("price",shoppingorders.get(i).getPrice());
-            json.put("fee",shoppingorders.get(i).getFee());
-            json.put("state",shoppingorders.get(i).getState());
+        json.put("receiveMan", address.getName());
+        json.put("commodity", shoppingorders.get(i).getCommodity());
+        json.put("pickTime", shoppingorders.get(i).getPick_time());
+        json.put("preWaitTime", shoppingorders.get(i).getPrewait_time());
+        json.put("comment", shoppingorders.get(i).getComment());
+        json.put("fee", shoppingorders.get(i).getFee());
+        json.put("releaseTime", shoppingorders.get(i).getRelease_time());
+        json.put("status", 0);
+        json.put("price", shoppingorders.get(i).getPrice());
+        json.put("fee", shoppingorders.get(i).getFee());
+        json.put("state", shoppingorders.get(i).getState());
+        json.put("picturePath", "/static/images/" + shoppingorders.get(i).getId() + ".jpg");
 
 
+        temp.add(json);
+    }
+    JSONObject result = new JSONObject();
+    result.put("status", "1");
+    result.put("data", temp);
 
-            temp.add(json);
-        }
-        JSONObject result=new JSONObject();
-        result.put("status","1");
-        result.put("data",temp);
-
-        PrintWriter writer = response.getWriter();
-        writer.write(result.toString());
-        writer.flush();
+    PrintWriter writer = response.getWriter();
+    writer.write(result.toString());
+    writer.flush();
+}
+catch (Exception e)
+{
+    JSONObject jsonObject=new JSONObject();
+    jsonObject.put("status","0");
+    jsonObject.put("data","");
+    WriteJson.writeJson(response,jsonObject.toJSONString());
+}
     }
     @RequestMapping(value = "finishShopphingOrder", method = RequestMethod.POST)
     public void finishShopphingOrder(HttpServletResponse response) throws Exception
     {
-        request.setCharacterEncoding("utf-8");
-        JSONObject data = ReadJSONUtil.readJSONStr(request);
+        try {
+            request.setCharacterEncoding("utf-8");
+            JSONObject data = ReadJSONUtil.readJSONStr(request);
 
-        String Order_Id = data.get("Order_Id").toString();
-        ShoppingOrder shoppingOrder = shoppingOrderService.findByid(Order_Id);
-        User release_man=iUserService.findOne(shoppingOrder.getRelease_man_id());
-        User excute_man=iUserService.findOne(shoppingOrder.getExecute_man_id());
-        double fee=shoppingOrder.getFee();
-        release_man.setGold(release_man.getGold()-fee);
-        iUserService.updateUser(release_man);
+            String Order_Id = data.get("Order_Id").toString();
+            ShoppingOrder shoppingOrder = shoppingOrderService.findByid(Order_Id);
+            User release_man = iUserService.findOne(shoppingOrder.getRelease_man_id());
+            User excute_man = iUserService.findOne(shoppingOrder.getExecute_man_id());
+            double fee = shoppingOrder.getFee();
+            release_man.setGold(release_man.getGold() - fee);
+            iUserService.updateUser(release_man);
 
-        excute_man.setGold(excute_man.getGold()+fee);
-        iUserService.updateUser(excute_man);
-        shoppingOrder.setState(2);
-        shoppingOrderService.updateShoppingOrder(shoppingOrder);
+            excute_man.setGold(excute_man.getGold() + fee);
+            iUserService.updateUser(excute_man);
+            shoppingOrder.setState(2);
+            shoppingOrderService.updateShoppingOrder(shoppingOrder);
 
-        JSONObject result=new JSONObject();
-        result.put("status","1");
-        result.put("data","");
-        System.out.println(result.toString());
-        PrintWriter writer = response.getWriter();
-        writer.write(result.toString());
-        writer.flush();
+            JSONObject result = new JSONObject();
+            result.put("status", "1");
+            result.put("data", "");
+            System.out.println(result.toString());
+            PrintWriter writer = response.getWriter();
+            writer.write(result.toString());
+            writer.flush();
+        }
+        catch (Exception e)
+        {
+            JSONObject jsonObject=new JSONObject();
+            jsonObject.put("status","0");
+            jsonObject.put("data","");
+            WriteJson.writeJson(response,jsonObject.toJSONString());
+        }
 
     }
 

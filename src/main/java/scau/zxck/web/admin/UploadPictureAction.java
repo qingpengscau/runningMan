@@ -60,6 +60,9 @@ public class UploadPictureAction {
                     File imgFile = new File(imgPath);
                     //将图片写到指定的文件下
                     partFile.transferTo(imgFile);
+                    final User user = iUserService.findOne(id);
+                    user.setImage_path(imgPath);
+                    iUserService.updateUser(user);
                 }
                 temp.put("status","1");
                 temp.put("data",null);

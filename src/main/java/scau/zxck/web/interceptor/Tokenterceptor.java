@@ -32,6 +32,7 @@ public class Tokenterceptor implements HandlerInterceptor{/*extends HandlerInter
                 String id=claims.getId();
 
                 session.setAttribute("User_Id",id);
+                System.out.println(session.getId());
                 return true;
             }catch (Exception e){
                 String r="access error!";

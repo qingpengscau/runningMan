@@ -55,7 +55,6 @@ public class UserInfoAction {
     @RequestMapping(value = "getUserInfo",method = RequestMethod.POST)
     public void getUserInfo(HttpServletResponse response)throws BaseException, java.io.IOException{
             JSONObject data=ReadJson.readJson(request);
-            System.out.println("==================kai==================");
             Conditions conditions=new Conditions();
             List<User>list=iUserService.listUser(conditions.eq("id",session.getAttribute("User_Id")));
             JSONObject temp=new JSONObject();
@@ -67,7 +66,7 @@ public class UserInfoAction {
                 temp.put("address",user.getLocation());
                 temp.put("money",user.getGold());
                 temp.put("cell",user.getUser_cell());
-                temp.put("image_path",user.getImage_path());
+                temp.put("imagePath",user.getImage_path());
                 reJson.put("status","1");
                 reJson.put("data",temp);
             }else{
